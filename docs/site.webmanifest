@@ -1,0 +1,14 @@
+{
+  "name": "RIFU",
+  "short_name": "RIFU",
+  "description": "L'app compagnon League of Legends gratuite pour Windows.",
+  "lang": "fr",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#05080e",
+  "theme_color": "#05080e",
+  "icons": [
+    { "src": "assets/logo.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
