@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confidentialité · RIFU</title>
+  <meta name="description" content="Quelles données RIFU utilise, ce qui reste sur votre PC, ce qui est envoyé et pourquoi.">
+  <meta name="theme-color" content="#070b12">
+  <link rel="canonical" href="https://rifutajine.github.io/rifu-releases/confidentialite.html">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="RIFU, accueil"><img src="assets/logo.svg" alt="" width="28" height="28"><span>RIFU</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="./#draft">La draft</a>
+        <a href="./#fonctions">Fonctionnalités</a>
+        <a href="./#installer">Installer</a>
+        <a href="./#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="./#telecharger">Télécharger</a>
+    </div>
+  </header>
+
+  <main id="contenu" class="doc">
+    <div class="wrap">
+      <h1>Confidentialité</h1>
+      <p class="muted">Dernière mise à jour : 23 octobre 2026 · version bêta de RIFU</p>
+
+      <p style="margin-top:24px">RIFU est conçu pour envoyer le moins possible. Votre historique, vos notes et vos réglages restent sur votre PC. Le serveur RIFU ne reçoit que ce qui est nécessaire pour afficher les profils publics et l'écran de chargement, et vos retours seulement si vous l'activez.</p>
+
+      <h2>Ce qui reste sur votre PC</h2>
+      <p>Ces données sont écrites dans le dossier de RIFU sur votre ordinateur. Elles n'en partent pas sans action de votre part.</p>
+      <ul>
+        <li>Historique de vos parties et de vos LP, relectures de parties</li>
+        <li>Notes de matchup</li>
+        <li>Réglages et pools de champions</li>
+        <li>Journaux de diagnostic</li>
+        <li>Mesures de performances (mémoire et processeur pendant la partie)</li>
+        <li>Les 5 derniers joueurs recherchés</li>
+        <li>Les signalements « Pas pertinente » sur les suggestions</li>
+      </ul>
+      <p>Lorsque vous maintenez <kbd>TAB</kbd> en partie, RIFU analyse brièvement une image de l'écran du jeu pour placer les écarts d'or au bon endroit. Cette image reste en mémoire le temps du calcul : elle n'est ni enregistrée ni envoyée, et aucune donnée de jeu n'en est tirée. Vous pouvez couper cette fonction dans Réglages › Overlays.</p>
+
+      <h2>Ce qui est envoyé au serveur RIFU</h2>
+      <p>RIFU s'appuie sur un serveur, hébergé en France, qui interroge l'API de Riot Games à sa place. C'est ce serveur qui détient la clé d'accès à Riot : elle n'est jamais dans l'application.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Quand</th><th>Ce qui est envoyé</th><th>Pourquoi</th></tr></thead>
+          <tbody>
+            <tr><td>Écran de chargement</td><td>Les Riot ID des joueurs de la partie, leur rôle et leur champion, avec un identifiant d'installation aléatoire</td><td>Afficher leur rang, leur forme et leurs résultats sur le champion. L'identifiant d'installation sert seulement à répartir les quotas.</td></tr>
+            <tr><td>Profil et recherche</td><td>Le Riot ID consulté</td><td>Afficher son profil public</td></tr>
+            <tr><td>Rattrapage de l'historique</td><td>Votre Riot ID et une date de départ</td><td>Retrouver les parties jouées sans RIFU (30 jours au plus)</td></tr>
+            <tr><td>Relecture de partie</td><td>L'identifiant de la partie</td><td>Calculer les écarts d'or et d'XP et la carte des morts</td></tr>
+            <tr><td>Au lancement</td><td>La version de RIFU et votre code bêta</td><td>Vérifier l'accès, proposer les mises à jour, télécharger les statistiques du patch</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:14px">Le serveur ne journalise ni les Riot ID, ni les adresses IP, ni le contenu des requêtes. Votre adresse IP est utilisée en mémoire pour limiter les abus, sans être enregistrée.</p>
+
+      <h3>Ce que le serveur conserve</h3>
+      <ul>
+        <li><b>Résumés de parties publiques</b> (champion, résultat, rôle, K/D/A, CS, vision) lus pour les profils et l'écran de chargement, avec l'identifiant Riot anonyme (PUUID) de chaque joueur, sans Riot ID. Ils sont supprimés au bout de 35 jours.</li>
+        <li><b>Statistiques agrégées</b> par champion (builds, runes, matchups, tier list), calculées à partir de parties classées publiques. Elles ne contiennent aucun identifiant de joueur.</li>
+      </ul>
+
+      <h2>Ce qui n'est envoyé qu'avec votre accord</h2>
+      <p>Ces deux options sont <b>désactivées par défaut</b>, dans Réglages › Confidentialité.</p>
+      <ul>
+        <li><b>Envoyer mes retours</b> : votre note, votre message, la version de RIFU et les champions de la draft, jamais votre Riot ID. Les retours sont transmis à un salon Discord privé de l'équipe RIFU et conservés pendant la durée de la bêta. Si vous cochez « Joindre mon journal », le journal de diagnostic est joint, avec les Riot ID masqués et 64 Ko au maximum ; il est supprimé au bout de 30 jours.</li>
+        <li><b>Statistiques d'usage anonymes</b> : chaque jour, le nombre d'utilisations de chaque fonction. Ni Riot ID, ni adresse IP, ni identifiant d'installation ne sont enregistrés.</li>
+      </ul>
+
+      <h2>Overwolf et publicité</h2>
+      <p>RIFU est construit sur Overwolf Electron. Les statistiques anonymes d'Overwolf sont désactivées par RIFU.</p>
+      <p>Pendant la bêta, RIFU n'affiche aucune publicité. Lorsqu'elle sera activée, elle sera fournie par la régie d'Overwolf, uniquement dans la fenêtre RIFU et hors partie. Votre consentement sera alors demandé par la fenêtre de consentement d'Overwolf, et pourra être modifié à tout moment dans les réglages. Cette page sera mise à jour avant.</p>
+
+      <h2>Données de Riot Games</h2>
+      <p>Les rangs, parties et maîtrises affichés viennent de l'API officielle de Riot Games et du client League installé sur votre PC. RIFU ne lit jamais la mémoire du jeu. Les données de Riot Games sont soumises à la <a href="https://www.riotgames.com/en/privacy-notice">politique de confidentialité de Riot Games</a>.</p>
+
+      <h2>Ce site</h2>
+      <p>Ce site n'utilise ni cookie, ni outil de mesure d'audience, ni police externe. Pour afficher la dernière version disponible, votre navigateur interroge l'API publique de GitHub, qui héberge aussi les installeurs.</p>
+
+      <h2>Vos droits</h2>
+      <p>Conformément au RGPD, vous pouvez demander l'accès à vos données, leur rectification ou leur suppression. La plupart sont sur votre PC : désinstaller RIFU et supprimer son dossier les efface. Pour les retours envoyés ou toute autre demande, contactez-nous.</p>
+      <p data-contact>Contact : <a href="#"></a></p>
+      <p data-contact-fallback>Contact : sur le Discord des testeurs.</p>
+      <p><a data-discord href="#">Discord RIFU</a></p>
+      <p>Vous pouvez aussi saisir la CNIL (<a href="https://www.cnil.fr">cnil.fr</a>).</p>
+
+      <h2>Mentions légales</h2>
+      <p><b>Éditeur</b> : RIFU, projet indépendant. Contact : <a href="mailto:rifutajine@gmail.com">rifutajine@gmail.com</a>.</p>
+      <p><b>Hébergement du site et des installeurs</b> : GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+      <p class="note">RIFU isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="24" height="24"><span>RIFU</span></a>
+      <nav class="foot-links" aria-label="Liens">
+        <a href="./">Accueil</a>
+        <a href="https://github.com/Rifutajine/rifu-releases/releases">Toutes les versions</a>
+        <a data-discord href="#">Discord</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
