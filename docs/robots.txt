@@ -1,0 +1,5 @@
+# Pris en compte seulement à la racine d'un domaine (par exemple avec un domaine personnalisé).
+User-agent: *
+Allow: /
+
+Sitemap: https://rifutajine.github.io/rifu-releases/sitemap.xml

@@ -1,5 +1,6 @@
 /*
- * Site RIFU : réglages en tête de fichier, puis lien de téléchargement de la dernière version.
+ * Site RIFU : réglages en tête de fichier, lien de téléchargement de la dernière version,
+ * puis les animations de la page d'accueil (apparitions, démo de draft).
  * Les liens laissés vides ('') sont simplement masqués.
  */
 const RIFU_SITE = {
@@ -68,5 +69,173 @@ function wireContacts() {
   });
 }
 
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** En-tête opaque dès qu'on quitte le haut de la page. */
+function wireHeader() {
+  const top = document.querySelector('.top');
+  if (!top) return;
+  const update = () => top.classList.toggle('is-scrolled', window.scrollY > 12);
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+}
+
+/** Apparition des blocs au défilement, en léger décalé pour les voisins. */
+function wireReveal() {
+  const items = [...document.querySelectorAll('.reveal')];
+  if (!('IntersectionObserver' in window) || reducedMotion) {
+    items.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+  items.forEach((el) => {
+    const siblings = [...el.parentElement.children].filter((c) => c.classList.contains('reveal'));
+    const i = siblings.indexOf(el);
+    if (i > 0) el.style.transitionDelay = `${Math.min(i, 6) * 70}ms`;
+  });
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add('is-visible');
+      io.unobserve(e.target);
+    }
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  items.forEach((el) => io.observe(el));
+}
+
+/** Lumière des tuiles qui suit la souris, et légère inclinaison du visuel du héros. */
+function wirePointer() {
+  if (reducedMotion || !window.matchMedia('(pointer: fine)').matches) return;
+  document.querySelectorAll('.tile').forEach((tile) => {
+    tile.addEventListener('pointermove', (e) => {
+      const r = tile.getBoundingClientRect();
+      tile.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      tile.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+  const scene = document.querySelector('.scene');
+  const inner = scene?.querySelector('[data-tilt]');
+  if (!scene || !inner) return;
+  scene.addEventListener('pointermove', (e) => {
+    if (window.innerWidth <= 960) return;
+    const r = scene.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    inner.style.transform = `rotateY(${-14 + x * 10}deg) rotateX(${6 - y * 8}deg)`;
+  });
+  scene.addEventListener('pointerleave', () => { inner.style.transform = ''; });
+}
+
+/*
+ * Démo de draft : les picks tombent un par un, les barres de compo se remplissent,
+ * puis RIFU signale les manques et propose trois options. Scénario illustratif.
+ */
+const DEMO_PICKS = [
+  { side: 'ally', i: 0, axes: { frontline: 2, engage: 1, peel: 0, cc: 1 }, ad: 1 },
+  { side: 'enemy', i: 0 },
+  { side: 'enemy', i: 1 },
+  { side: 'ally', i: 1, axes: { frontline: 1, engage: 3, peel: 1, cc: 2 }, ad: 1 },
+  { side: 'ally', i: 2, axes: { frontline: 0, engage: 0, peel: 0, cc: 1 }, ad: 1 },
+  { side: 'enemy', i: 2 },
+  { side: 'enemy', i: 3 },
+  { side: 'ally', i: 3, axes: { frontline: 1, engage: 3, peel: 4, cc: 3 }, ad: 0.3 },
+  { side: 'enemy', i: 4 },
+];
+const DEMO_GAPS = ['Il vous manque des dégâts magiques', 'Frontline faible'];
+const LOW = 5;
+
+function wireDemo() {
+  const demo = document.querySelector('[data-demo]');
+  if (!demo) return;
+  const q = (s) => demo.querySelector(s);
+  const qa = (s) => [...demo.querySelectorAll(s)];
+  const timer = q('[data-timer]');
+  const phase = q('[data-phase]');
+  const gaps = q('[data-gaps]');
+  const options = qa('[data-option]');
+  const bars = Object.fromEntries(qa('[data-axis]').map((b) => [b.dataset.axis, b]));
+  const ad = q('[data-dmg] .ad');
+  const adOut = q('[data-dmg-out]');
+  let timeouts = [];
+
+  const later = (ms, fn) => timeouts.push(setTimeout(fn, ms));
+  const slot = (p) => q(`[data-${p.side}="${p.i}"]`);
+
+  function setAxes(totals, adShare, markLow) {
+    for (const [axis, bar] of Object.entries(bars)) {
+      const v = totals[axis] || 0;
+      bar.querySelector('i').style.width = `${v * 10}%`;
+      bar.nextElementSibling.textContent = String(v);
+      bar.classList.toggle('is-low', markLow && v < LOW);
+    }
+    ad.style.width = adShare === null ? '50%' : `${Math.round(adShare * 100)}%`;
+    adOut.textContent = adShare === null ? '—' : `${Math.round(adShare * 100)} % AD`;
+  }
+
+  function reset() {
+    timeouts.forEach(clearTimeout);
+    timeouts = [];
+    qa('.slot[data-ally], .slot[data-enemy]').forEach((s) => {
+      s.classList.remove('is-picked');
+      s.querySelector('[data-name]').textContent = '…';
+    });
+    options.forEach((o) => o.classList.remove('is-in'));
+    gaps.replaceChildren();
+    setAxes({}, null, false);
+    timer.textContent = '30';
+    phase.textContent = 'La draft commence…';
+  }
+
+  function finish(totals, adShare) {
+    setAxes(totals, adShare, true);
+    timer.textContent = '22';
+    phase.textContent = 'À vous : trois options pour votre compo';
+    gaps.replaceChildren(...DEMO_GAPS.map((t) => Object.assign(document.createElement('span'), { className: 'gap-chip', textContent: t })));
+  }
+
+  function play() {
+    reset();
+    const totals = {};
+    let adSum = 0;
+    let allies = 0;
+    const step = reducedMotion ? 0 : 650;
+    DEMO_PICKS.forEach((p, n) => {
+      const run = () => {
+        const s = slot(p);
+        s.classList.add('is-picked');
+        const name = s.querySelector('[data-name]');
+        name.textContent = name.dataset.name;
+        if (p.axes) {
+          for (const [k, v] of Object.entries(p.axes)) totals[k] = (totals[k] || 0) + v;
+          adSum += p.ad;
+          allies += 1;
+        }
+        setAxes(totals, allies ? adSum / allies : null, false);
+        timer.textContent = String(30 - Math.round((n + 1) * 0.9));
+        phase.textContent = p.side === 'ally' ? 'Votre équipe choisit…' : "L'adversaire choisit…";
+      };
+      if (step) later(400 + n * step, run); else run();
+    });
+    const end = () => {
+      finish(totals, adSum / allies);
+      options.forEach((o, i) => (step ? later(250 + i * 180, () => o.classList.add('is-in')) : o.classList.add('is-in')));
+    };
+    if (step) later(400 + DEMO_PICKS.length * step + 300, end); else end();
+  }
+
+  q('[data-replay]')?.addEventListener('click', play);
+  if (!('IntersectionObserver' in window)) { play(); return; }
+  reset();
+  const io = new IntersectionObserver((entries) => {
+    if (!entries.some((e) => e.isIntersecting)) return;
+    io.disconnect();
+    play();
+  }, { threshold: 0.15 });
+  io.observe(demo);
+}
+
 wireContacts();
+wireHeader();
+wireReveal();
+wirePointer();
+wireDemo();
 void wireDownloads();
