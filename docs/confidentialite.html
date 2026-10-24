@@ -34,7 +34,7 @@
   <main id="contenu" class="doc">
     <div class="wrap">
       <h1>Confidentialité</h1>
-      <p class="muted">Dernière mise à jour : 23 octobre 2026 · version bêta de RIFU</p>
+      <p class="muted">Dernière mise à jour : 24 octobre 2026 · version bêta de RIFU</p>
 
       <p style="margin-top:24px">RIFU est conçu pour envoyer le moins possible. Votre historique, vos notes et vos réglages restent sur votre PC. Le serveur RIFU ne reçoit que ce qui est nécessaire pour afficher les profils publics et l'écran de chargement, et vos retours seulement si vous l'activez.</p>
 
@@ -48,6 +48,17 @@
         <li>Mesures de performances (mémoire et processeur pendant la partie)</li>
         <li>Les 5 derniers joueurs recherchés</li>
         <li>Les signalements « Pas pertinente » sur les suggestions</li>
+        <li>Les Riot ID des joueurs de vos parties, dans le bilan et l'historique (ils n'apparaissent jamais dans l'image à partager)</li>
+        <li>Votre collection de skins : seulement les identifiants des skins et chromas que vous possédez</li>
+      </ul>
+
+      <h2>Ce que RIFU lit sur votre PC</h2>
+      <p>RIFU n'utilise que les interfaces que Riot met à disposition des applications tierces. Il ne lit jamais la mémoire du jeu et ne modifie aucun fichier de League.</p>
+      <ul>
+        <li><b>Client League (API locale)</b> : votre phase de jeu, la sélection des champions (champions et rôles, jamais les noms des joueurs masqués), vos champions, maîtrises, rang et LP, votre historique, votre salon (seulement la file et vos propres champions en Partie rapide), vos cartes de champions en ARAM et votre collection, à l'ouverture de la page Collection.</li>
+        <li><b>Écritures dans le client</b>, à votre demande ou si vous l'activez : la page de runes « RIFU », vos deux sorts d'invocateur, le set d'objets « RIFU » et, si vous l'activez, l'acceptation de la partie trouvée (jamais le refus).</li>
+        <li><b>Partie en cours</b> : les données que le jeu publie pour les applications (Live Client Data) et les évènements de jeu d'Overwolf (sbires, camps de la jungle, augments proposés en ARAM Mayhem). Elles servent pendant la partie et ne sont pas envoyées.</li>
+        <li><b>Réglages d'interface de League</b> (échelle du HUD et de la mini-carte), lus dans le fichier de configuration du jeu pour placer les overlays.</li>
       </ul>
       <p>Lorsque vous maintenez <kbd>TAB</kbd> en partie, RIFU analyse brièvement une image de l'écran du jeu pour placer les écarts d'or au bon endroit. Cette image reste en mémoire le temps du calcul : elle n'est ni enregistrée ni envoyée, et aucune donnée de jeu n'en est tirée. Vous pouvez couper cette fonction dans Réglages › Overlays.</p>
 
@@ -70,7 +81,7 @@
       <h3>Ce que le serveur conserve</h3>
       <ul>
         <li><b>Résumés de parties publiques</b> (champion, résultat, rôle, K/D/A, CS, vision) lus pour les profils et l'écran de chargement, avec l'identifiant Riot anonyme (PUUID) de chaque joueur, sans Riot ID. Ils sont supprimés au bout de 35 jours.</li>
-        <li><b>Statistiques agrégées</b> par champion (builds, runes, matchups, tier list), calculées à partir de parties classées publiques. Elles ne contiennent aucun identifiant de joueur.</li>
+        <li><b>Statistiques agrégées</b> par champion (builds, runes, matchups, tier list), calculées à partir de parties publiques (classées, ARAM et ARAM Mayhem). Pour les augments d'ARAM Mayhem, seule la fréquence à laquelle chaque augment est choisi est comptée, jamais les victoires. Elles ne contiennent aucun identifiant de joueur.</li>
       </ul>
 
       <h2>Ce qui n'est envoyé qu'avec votre accord</h2>
@@ -91,15 +102,27 @@
       <p>Ce site n'utilise ni cookie, ni outil de mesure d'audience, ni police externe. Pour afficher la dernière version disponible, votre navigateur interroge l'API publique de GitHub, qui héberge aussi les installeurs.</p>
 
       <h2>Vos droits</h2>
-      <p>Conformément au RGPD, vous pouvez demander l'accès à vos données, leur rectification ou leur suppression. La plupart sont sur votre PC : désinstaller RIFU et supprimer son dossier les efface. Pour les retours envoyés ou toute autre demande, contactez-nous.</p>
-      <p data-contact>Contact : <a href="#"></a></p>
-      <p data-contact-fallback>Contact : sur le Discord des testeurs.</p>
+      <p>Conformément au RGPD, vous pouvez demander l'accès à vos données, leur rectification ou leur suppression. La plupart sont sur votre PC : désinstaller RIFU et supprimer son dossier les efface. Les résumés de parties gardés par le serveur sont effacés au bout de 35 jours ; pour les retours envoyés, la suppression de ce que le serveur garde ou toute autre demande, écrivez-nous.</p>
+      <p>Contact : <a href="mailto:rifutajine@gmail.com">rifutajine@gmail.com</a></p>
       <p><a data-discord href="#">Discord RIFU</a></p>
       <p>Vous pouvez aussi saisir la CNIL (<a href="https://www.cnil.fr">cnil.fr</a>).</p>
 
       <h2>Mentions légales</h2>
       <p><b>Éditeur</b> : RIFU, projet indépendant. Contact : <a href="mailto:rifutajine@gmail.com">rifutajine@gmail.com</a>.</p>
+      <p><b>Conditions d'utilisation</b> : <a href="conditions.html">conditions d'utilisation de RIFU</a>.</p>
       <p><b>Hébergement du site et des installeurs</b> : GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+      <h2 id="english" lang="en">Privacy summary (English)</h2>
+      <div lang="en">
+        <p>RIFU is a free League of Legends companion app for Windows. It only uses interfaces Riot makes available to third-party apps (Riot API, League Client API, Live Client Data) and never reads game memory.</p>
+        <ul>
+          <li><b>Stays on your PC</b>: match history and LP, notes, settings, champion pools, diagnostics, the Riot IDs of players in your past games, your skin collection (owned IDs only).</li>
+          <li><b>Sent to the RIFU server</b>, which holds the Riot API key (never shipped in the app): Riot IDs of the players in your game at the loading screen, a looked-up Riot ID, your Riot ID for history backfill, a match ID for match review, the app version. The server does not log Riot IDs, IP addresses or request content.</li>
+          <li><b>Kept by the server</b>: compact public match summaries keyed by PUUID (no Riot ID), deleted after 35 days; champion-level aggregate statistics with no player identifier. ARAM Mayhem augments are counted by pick frequency only, never by wins.</li>
+          <li><b>Opt-in only</b> (off by default): feedback (never your Riot ID) and anonymous daily usage counters.</li>
+          <li><b>Your rights (GDPR)</b>: access, correction and deletion on request at <a href="mailto:rifutajine@gmail.com">rifutajine@gmail.com</a>. Uninstalling RIFU and deleting its folder removes local data.</li>
+        </ul>
+      </div>
+
       <p class="note">RIFU isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
     </div>
   </main>
@@ -109,6 +132,8 @@
       <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="26" height="26"><span>RIFU</span></a>
       <nav class="foot-links" aria-label="Liens">
         <a href="./">Accueil</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="conditions.html">Conditions d'utilisation</a>
         <a href="https://github.com/Rifutajine/rifu-releases/releases">Toutes les versions</a>
         <a data-discord href="#">Discord</a>
       </nav>
