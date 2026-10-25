@@ -233,7 +233,46 @@ function wireDemo() {
   io.observe(demo);
 }
 
+/**
+ * Captures agrandies au clic, en pleine résolution. Un clic sur l'image l'affiche à sa taille réelle
+ * (défilement pour la parcourir), un autre la remet à la taille de l'écran. Sans script, le lien ouvre l'image.
+ */
+function wireLightbox() {
+  const links = document.querySelectorAll('a.zoom');
+  if (!links.length || typeof HTMLDialogElement !== 'function') return;
+  const dialog = document.createElement('dialog');
+  dialog.className = 'lightbox';
+  dialog.setAttribute('aria-label', 'Capture agrandie');
+  dialog.innerHTML = '<div class="lightbox-stage"><img alt=""></div><p class="lightbox-bar"></p><button class="lightbox-close" type="button" aria-label="Fermer">×</button>';
+  document.body.append(dialog);
+  const img = dialog.querySelector('img');
+  const bar = dialog.querySelector('.lightbox-bar');
+  const close = () => dialog.close();
+  dialog.querySelector('.lightbox-close').addEventListener('click', close);
+  dialog.querySelector('.lightbox-stage').addEventListener('click', (e) => { if (e.target !== img) close(); });
+  dialog.addEventListener('close', () => { dialog.classList.remove('is-full'); document.documentElement.style.overflow = ''; });
+  img.addEventListener('click', () => {
+    const full = dialog.classList.toggle('is-full');
+    // Taille réelle : la capture est en 2×, on l'affiche à sa taille en pixels CSS.
+    img.style.width = full ? `${img.naturalWidth / 2}px` : '';
+  });
+  links.forEach((a) => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const thumb = a.querySelector('img');
+    img.src = a.href;
+    img.alt = thumb?.alt ?? '';
+    img.style.width = '';
+    bar.textContent = thumb?.alt ?? '';
+    const hint = document.createElement('span');
+    hint.textContent = ' · Cliquez sur l’image pour la voir en taille réelle.';
+    bar.append(hint);
+    document.documentElement.style.overflow = 'hidden';
+    dialog.showModal();
+  }));
+}
+
 wireContacts();
+wireLightbox();
 wireHeader();
 wireReveal();
 wirePointer();
