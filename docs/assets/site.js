@@ -14,6 +14,41 @@ const RIFU_SITE = {
 
 const releasesPage = `https://github.com/${RIFU_SITE.releasesRepo}/releases`;
 
+/** Textes écrits par le script, selon la langue de la page (français par défaut, anglais pour /en/). */
+const TEXTS = {
+  fr: {
+    locale: 'fr-FR',
+    megabytes: 'Mo',
+    version: 'Version',
+    notes: 'Notes de version',
+    fallbackMeta: 'Windows 10 et 11 · installeur sur la page des versions',
+    gaps: ['Il vous manque des dégâts magiques', 'Frontline faible'],
+    draftStart: 'La draft commence…',
+    yourTurn: 'À vous : trois options pour votre compo',
+    allyPicks: 'Votre équipe choisit…',
+    enemyPicks: "L'adversaire choisit…",
+    zoomLabel: 'Capture agrandie',
+    close: 'Fermer',
+    zoomHint: ' · Cliquez sur l’image pour la voir en taille réelle.',
+  },
+  en: {
+    locale: 'en-GB',
+    megabytes: 'MB',
+    version: 'Version',
+    notes: 'Release notes',
+    fallbackMeta: 'Windows 10 and 11 · installer on the releases page',
+    gaps: ['You lack magic damage', 'Weak frontline'],
+    draftStart: 'Draft starting…',
+    yourTurn: 'Your turn: three options for your comp',
+    allyPicks: 'Your team is picking…',
+    enemyPicks: 'The enemy is picking…',
+    zoomLabel: 'Enlarged screenshot',
+    close: 'Close',
+    zoomHint: ' · Click the image to see it at full size.',
+  },
+};
+const T = document.documentElement.lang.startsWith('en') ? TEXTS.en : TEXTS.fr;
+
 /** Dernière version publiée (pré-versions comprises : la bêta est publiée en pré-version). */
 async function latestRelease() {
   const res = await fetch(`https://api.github.com/repos/${RIFU_SITE.releasesRepo}/releases?per_page=10`, {
@@ -29,8 +64,8 @@ async function latestRelease() {
   throw new Error('Aucun installeur publié');
 }
 
-const formatDate = (iso) => new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-const formatSize = (bytes) => `${Math.round(bytes / 1e6)} Mo`;
+const formatDate = (iso) => new Date(iso).toLocaleDateString(T.locale, { day: 'numeric', month: 'long', year: 'numeric' });
+const formatSize = (bytes) => `${Math.round(bytes / 1e6)} ${T.megabytes}`;
 
 async function wireDownloads() {
   const buttons = document.querySelectorAll('[data-download]');
@@ -40,16 +75,16 @@ async function wireDownloads() {
     const r = await latestRelease();
     buttons.forEach((b) => { b.href = r.url; b.setAttribute('download', ''); });
     metas.forEach((m) => {
-      m.textContent = `Version ${r.version} · ${formatDate(r.date)} · ${formatSize(r.size)} · `;
+      m.textContent = `${T.version} ${r.version} · ${formatDate(r.date)} · ${formatSize(r.size)} · `;
       const notes = document.createElement('a');
       notes.href = r.page;
-      notes.textContent = 'Notes de version';
+      notes.textContent = T.notes;
       m.append(notes);
     });
   } catch {
     // Quota de l'API GitHub atteint ou réseau coupé : on renvoie vers la page des versions.
     buttons.forEach((b) => { b.href = releasesPage; });
-    metas.forEach((m) => { m.textContent = 'Windows 10 et 11 · installeur sur la page des versions'; });
+    metas.forEach((m) => { m.textContent = T.fallbackMeta; });
   }
 }
 
@@ -140,7 +175,6 @@ const DEMO_PICKS = [
   { side: 'ally', i: 3, axes: { frontline: 1, engage: 3, peel: 4, cc: 3 }, ad: 0.3 },
   { side: 'enemy', i: 4 },
 ];
-const DEMO_GAPS = ['Il vous manque des dégâts magiques', 'Frontline faible'];
 const LOW = 5;
 
 function wireDemo() {
@@ -182,14 +216,14 @@ function wireDemo() {
     gaps.replaceChildren();
     setAxes({}, null, false);
     timer.textContent = '30';
-    phase.textContent = 'La draft commence…';
+    phase.textContent = T.draftStart;
   }
 
   function finish(totals, adShare) {
     setAxes(totals, adShare, true);
     timer.textContent = '22';
-    phase.textContent = 'À vous : trois options pour votre compo';
-    gaps.replaceChildren(...DEMO_GAPS.map((t) => Object.assign(document.createElement('span'), { className: 'gap-chip', textContent: t })));
+    phase.textContent = T.yourTurn;
+    gaps.replaceChildren(...T.gaps.map((t) => Object.assign(document.createElement('span'), { className: 'gap-chip', textContent: t })));
   }
 
   function play() {
@@ -211,7 +245,7 @@ function wireDemo() {
         }
         setAxes(totals, allies ? adSum / allies : null, false);
         timer.textContent = String(30 - Math.round((n + 1) * 0.9));
-        phase.textContent = p.side === 'ally' ? 'Votre équipe choisit…' : "L'adversaire choisit…";
+        phase.textContent = p.side === 'ally' ? T.allyPicks : T.enemyPicks;
       };
       if (step) later(400 + n * step, run); else run();
     });
@@ -242,8 +276,8 @@ function wireLightbox() {
   if (!links.length || typeof HTMLDialogElement !== 'function') return;
   const dialog = document.createElement('dialog');
   dialog.className = 'lightbox';
-  dialog.setAttribute('aria-label', 'Capture agrandie');
-  dialog.innerHTML = '<div class="lightbox-stage"><img alt=""></div><p class="lightbox-bar"></p><button class="lightbox-close" type="button" aria-label="Fermer">×</button>';
+  dialog.setAttribute('aria-label', T.zoomLabel);
+  dialog.innerHTML = `<div class="lightbox-stage"><img alt=""></div><p class="lightbox-bar"></p><button class="lightbox-close" type="button" aria-label="${T.close}">×</button>`;
   document.body.append(dialog);
   const img = dialog.querySelector('img');
   const bar = dialog.querySelector('.lightbox-bar');
@@ -264,7 +298,7 @@ function wireLightbox() {
     img.style.width = '';
     bar.textContent = thumb?.alt ?? '';
     const hint = document.createElement('span');
-    hint.textContent = ' · Cliquez sur l’image pour la voir en taille réelle.';
+    hint.textContent = T.zoomHint;
     bar.append(hint);
     document.documentElement.style.overflow = 'hidden';
     dialog.showModal();
