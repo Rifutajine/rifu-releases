@@ -82,6 +82,7 @@
       <ul>
         <li><b>Résumés de parties publiques</b> (champion, résultat, rôle, K/D/A, CS, vision) lus pour les profils et l'écran de chargement, avec l'identifiant Riot anonyme (PUUID) de chaque joueur, sans Riot ID. Ils sont supprimés au bout de 35 jours.</li>
         <li><b>Statistiques agrégées</b> par champion (builds, runes, matchups, tier list), calculées à partir de parties publiques (classées, ARAM et ARAM Mayhem). Pour les augments d'ARAM Mayhem, seule la fréquence à laquelle chaque augment est choisi est comptée, jamais les victoires. Elles ne contiennent aucun identifiant de joueur.</li>
+        <li><b>Index des joueurs pour la recherche</b> : pour proposer des joueurs pendant la frappe, le serveur RIFU garde, pour chaque joueur vu dans une partie terminée publique ou dans un profil cherché, son Riot ID, sa région, son icône et son niveau si connus, la date de sa dernière apparition et le nombre d'apparitions (ni rang, ni champion, ni historique). Ces données sont effacées après 90 jours sans apparition ; pour retirer votre Riot ID plus tôt, utilisez « Retirer mon Riot ID de la recherche » dans le formulaire de retour de l'app, ou écrivez-nous : il est effacé et ne sera plus jamais réindexé.</li>
       </ul>
 
       <h2>Ce qui n'est envoyé qu'avec votre accord</h2>
@@ -118,6 +119,7 @@
           <li><b>Stays on your PC</b>: match history and LP, notes, settings, champion pools, diagnostics, the Riot IDs of players in your past games, your skin collection (owned IDs only).</li>
           <li><b>Sent to the RIFU server</b>, which holds the Riot API key (never shipped in the app): Riot IDs of the players in your game at the loading screen, a looked-up Riot ID, your Riot ID for history backfill, a match ID for match review, the app version. The server does not log Riot IDs, IP addresses or request content.</li>
           <li><b>Kept by the server</b>: compact public match summaries keyed by PUUID (no Riot ID), deleted after 35 days; champion-level aggregate statistics with no player identifier. ARAM Mayhem augments are counted by pick frequency only, never by wins.</li>
+          <li><b>Player search index</b>: to suggest players as you type, the server keeps, for each player seen in a public finished game or a looked-up profile, their Riot ID, region, icon and level if known, when they were last seen and how many times (no rank, champion or history). It is deleted after 90 days without being seen; to remove your Riot ID sooner, use "Remove my Riot ID from search" in the app's feedback form or email us: it is deleted and never indexed again.</li>
           <li><b>Opt-in only</b> (off by default): feedback (never your Riot ID) and anonymous daily usage counters.</li>
           <li><b>Your rights (GDPR)</b>: access, correction and deletion on request at <a href="mailto:rifutajine@gmail.com">rifutajine@gmail.com</a>. Uninstalling RIFU and deleting its folder removes local data.</li>
         </ul>
