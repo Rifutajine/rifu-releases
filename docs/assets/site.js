@@ -105,8 +105,17 @@ async function wireDownloads() {
   const buttons = document.querySelectorAll('[data-download]');
   const metas = document.querySelectorAll('[data-download-meta]');
   if (!buttons.length) return;
+  const release = latestRelease();
+  release.catch(() => {});
+  // Un clic avant la réponse de GitHub suivait l'adresse de secours (page des versions) :
+  // on attend la réponse puis on lance le téléchargement de l'installeur.
+  buttons.forEach((b) => b.addEventListener('click', async (e) => {
+    if (b.href.endsWith('.exe') || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    try { window.location.assign((await release).url); } catch { window.location.assign(releasesPage); }
+  }));
   try {
-    const r = await latestRelease();
+    const r = await release;
     buttons.forEach((b) => { b.href = r.url; b.setAttribute('download', ''); });
     metas.forEach((m) => {
       m.textContent = `${T.version} ${r.version} · ${formatDate(r.date)} · ${formatSize(r.size)} · `;
