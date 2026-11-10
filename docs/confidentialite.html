@@ -34,7 +34,7 @@
   <main id="contenu" class="doc">
     <div class="wrap">
       <h1>Confidentialité</h1>
-      <p class="muted">Dernière mise à jour : 24 octobre 2026 · version bêta de RIFU</p>
+      <p class="muted">Dernière mise à jour : 10 novembre 2026 · version bêta de RIFU</p>
 
       <p style="margin-top:24px">RIFU est conçu pour envoyer le moins possible. Votre historique, vos notes et vos réglages restent sur votre PC. Le serveur RIFU ne reçoit que ce qui est nécessaire pour afficher les profils publics et l'écran de chargement, et vos retours seulement si vous l'activez.</p>
 
@@ -53,17 +53,20 @@
       </ul>
 
       <h2>Ce que RIFU lit sur votre PC</h2>
-      <p>RIFU n'utilise que les interfaces que Riot met à disposition des applications tierces. Il ne lit jamais la mémoire du jeu et ne modifie aucun fichier de League.</p>
+      <p>RIFU n'utilise que les interfaces que Riot met à disposition des applications tierces. Il ne lit jamais la mémoire du jeu. Il ne modifie qu'un seul fichier de League, et seulement si vous le demandez : voir « Replays » ci-dessous.</p>
       <ul>
         <li><b>Client League (API locale)</b> : votre phase de jeu, la sélection des champions (champions et rôles, jamais les noms des joueurs masqués), vos champions, maîtrises, rang et LP, votre historique, votre salon (seulement la file et vos propres champions en Partie rapide), vos cartes de champions en ARAM et votre collection, à l'ouverture de la page Collection.</li>
         <li><b>Écritures dans le client</b>, à votre demande ou si vous l'activez : la page de runes « RIFU », vos deux sorts d'invocateur, le set d'objets « RIFU » et, si vous l'activez, l'acceptation de la partie trouvée (jamais le refus).</li>
-        <li><b>Partie en cours</b> : les données que le jeu publie pour les applications (Live Client Data) et les évènements de jeu d'Overwolf (sbires, camps de la jungle, augments proposés en ARAM Mayhem). Elles servent pendant la partie et ne sont pas envoyées.</li>
+        <li><b>Partie en cours</b> : les données que le jeu publie pour les applications (Live Client Data) et les évènements de jeu d'Overwolf (sbires, camps de la jungle et, quand ils sont disponibles, augments proposés en ARAM Mayhem). Elles servent pendant la partie et ne sont pas envoyées.</li>
         <li><b>Réglages d'interface de League</b> (échelle du HUD et de la mini-carte), lus dans le fichier de configuration du jeu pour placer les overlays.</li>
+        <li><b>Liste d'amis du client League</b> : seulement le nom et le tag de vos amis (jamais leur statut ni vos messages), gardés sur votre PC pour vous les proposer quand vous cherchez un joueur.</li>
+        <li><b>Replays</b> : pour revoir une partie, la Replay API de Riot doit être activée dans le fichier de configuration du jeu (<code>game.cfg</code>). Si elle ne l'est pas, RIFU vous propose « Activer les replays » et, seulement après votre clic et jeu fermé, ajoute cette seule ligne (<code>EnableReplayApi=1</code>), après une copie de sauvegarde du fichier. C'est la seule écriture de RIFU dans les fichiers de League.</li>
       </ul>
       <p>Lorsque vous maintenez <kbd>TAB</kbd> en partie, RIFU analyse brièvement une image de l'écran du jeu pour placer les écarts d'or au bon endroit. Cette image reste en mémoire le temps du calcul : elle n'est ni enregistrée ni envoyée, et aucune donnée de jeu n'en est tirée. Vous pouvez couper cette fonction dans Réglages › Overlays.</p>
+      <p>En ARAM Mayhem, quand les évènements de jeu d'Overwolf ne donnent pas les augments proposés, RIFU lit le nom des trois cartes d'augments sur une image de l'écran, avec la reconnaissance de texte intégrée à Windows. Seuls les titres des cartes sont analysés ; l'image reste en mémoire le temps de la lecture, sans être enregistrée ni envoyée.</p>
 
       <h2>Ce qui est envoyé au serveur RIFU</h2>
-      <p>RIFU s'appuie sur un serveur, hébergé en France, qui interroge l'API de Riot Games à sa place. C'est ce serveur qui détient la clé d'accès à Riot : elle n'est jamais dans l'application.</p>
+      <p>RIFU s'appuie sur un serveur, hébergé en Allemagne (Union européenne) chez Contabo, qui interroge l'API de Riot Games à sa place. C'est ce serveur qui détient la clé d'accès à Riot : elle n'est jamais dans l'application.</p>
       <div class="table-scroll">
         <table>
           <thead><tr><th>Quand</th><th>Ce qui est envoyé</th><th>Pourquoi</th></tr></thead>
@@ -76,14 +79,18 @@
           </tbody>
         </table>
       </div>
-      <p style="margin-top:14px">Le serveur ne journalise ni les Riot ID, ni les adresses IP, ni le contenu des requêtes. Votre adresse IP est utilisée en mémoire pour limiter les abus, sans être enregistrée.</p>
+      <p style="margin-top:14px">Le serveur ne journalise ni les Riot ID, ni les adresses IP, ni le contenu des requêtes. Il note seulement le nom du code bêta utilisé (pas le code lui-même), pour repérer un code partagé ou abusé. Votre adresse IP est utilisée en mémoire pour limiter les abus, sans être enregistrée.</p>
 
       <h3>Ce que le serveur conserve</h3>
       <ul>
         <li><b>Résumés de parties publiques</b> (champion, résultat, rôle, K/D/A, CS, vision) lus pour les profils et l'écran de chargement, avec l'identifiant Riot anonyme (PUUID) de chaque joueur, sans Riot ID. Ils sont supprimés au bout de 35 jours.</li>
         <li><b>Statistiques agrégées</b> par champion (builds, runes, matchups, tier list), calculées à partir de parties publiques (classées, ARAM et ARAM Mayhem). Pour les augments d'ARAM Mayhem, seule la fréquence à laquelle chaque augment est choisi est comptée, jamais les victoires. Elles ne contiennent aucun identifiant de joueur.</li>
         <li><b>Index des joueurs pour la recherche</b> : pour proposer des joueurs pendant la frappe, le serveur RIFU garde, pour chaque joueur vu dans une partie terminée publique ou dans un profil cherché, son Riot ID, sa région, son icône et son niveau si connus, la date de sa dernière apparition et le nombre d'apparitions (ni rang, ni champion, ni historique). Ces données sont effacées après 90 jours sans apparition ; pour retirer votre Riot ID plus tôt, utilisez « Retirer mon Riot ID de la recherche » dans le formulaire de retour de l'app, ou écrivez-nous : il est effacé et ne sera plus jamais réindexé.</li>
+        <li><b>Badge « Testeur bêta »</b> : quand vous utilisez RIFU avec un code bêta, votre compte League est inscrit pour recevoir ce badge. Le serveur garde l'identifiant Riot anonyme (PUUID) du compte, sa région, le nom du code bêta (pas le code), la date d'inscription et votre choix d'afficher ou de masquer le badge (Réglages › Confidentialité). Pas de Riot ID ni d'adresse IP. L'inscription est gardée pour attribuer le badge, sauf demande de retrait.</li>
+        <li><b>Vérification de votre compte</b> : pour prouver qu'un compte League est bien le vôtre, RIFU vous demande de mettre une icône de profil donnée, puis le serveur la vérifie auprès de Riot. Il garde l'identifiant anonyme (PUUID) du compte, une empreinte du jeton de vérification (jamais le jeton lui-même), le nom du code bêta et la date. Le jeton reste chiffré sur votre PC. Vous pouvez remettre votre icône juste après.</li>
+        <li><b>Lien avec Discord</b>, seulement si vous le faites (commande <code>/rifu lier</code> sur le serveur Discord RIFU) : le serveur garde votre identifiant Discord et l'identifiant anonyme (PUUID) du compte lié, ni pseudo ni adresse e-mail.</li>
       </ul>
+      <p>« Retirer mon Riot ID de la recherche » efface aussi votre inscription au badge, la vérification du compte et le lien Discord.</p>
 
       <h2>Ce qui n'est envoyé qu'avec votre accord</h2>
       <p>Ces deux options sont <b>désactivées par défaut</b>, dans Réglages › Confidentialité.</p>
@@ -112,13 +119,16 @@
       <p><b>Éditeur</b> : RIFU, projet indépendant. Contact : <a href="mailto:rifutajine@gmail.com">rifutajine@gmail.com</a>.</p>
       <p><b>Conditions d'utilisation</b> : <a href="conditions.html">conditions d'utilisation de RIFU</a>.</p>
       <p><b>Hébergement du site et des installeurs</b> : GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+      <p><b>Hébergement du serveur RIFU</b> : Contabo GmbH, Aschauer Straße 32a, 81549 Munich, Allemagne.</p>
       <h2 id="english" lang="en">Privacy summary (English)</h2>
       <div lang="en">
-        <p>RIFU is a free League of Legends companion app for Windows. It only uses interfaces Riot makes available to third-party apps (Riot API, League Client API, Live Client Data) and never reads game memory.</p>
+        <p>RIFU is a free League of Legends companion app for Windows. It only uses interfaces Riot makes available to third-party apps (Riot API, League Client API, Live Client Data) and never reads game memory. The only League file it changes is <code>game.cfg</code>, and only when you click "Enable replays": it adds the single line <code>EnableReplayApi=1</code> while the game is closed, after a backup.</p>
         <ul>
-          <li><b>Stays on your PC</b>: match history and LP, notes, settings, champion pools, diagnostics, the Riot IDs of players in your past games, your skin collection (owned IDs only).</li>
-          <li><b>Sent to the RIFU server</b>, which holds the Riot API key (never shipped in the app): Riot IDs of the players in your game at the loading screen, a looked-up Riot ID, your Riot ID for history backfill, a match ID for match review, the app version. The server does not log Riot IDs, IP addresses or request content.</li>
+          <li><b>Stays on your PC</b>: match history and LP, notes, settings, champion pools, diagnostics, the Riot IDs of players in your past games, your skin collection (owned IDs only), your League friends' names and tags (to suggest them in player search).</li>
+          <li><b>Screen reading</b>: holding TAB in game, and in ARAM Mayhem when Overwolf game events don't provide the offered augments, RIFU analyses a screen image in memory (gold gaps; augment card titles via Windows' built-in text recognition). Images are never saved or sent.</li>
+          <li><b>Sent to the RIFU server</b> (hosted in Germany, EU, by Contabo GmbH), which holds the Riot API key (never shipped in the app): Riot IDs of the players in your game at the loading screen, a looked-up Riot ID, your Riot ID for history backfill, a match ID for match review, the app version. The server does not log Riot IDs, IP addresses or request content; it only logs the name of the beta code used (never the code itself).</li>
           <li><b>Kept by the server</b>: compact public match summaries keyed by PUUID (no Riot ID), deleted after 35 days; champion-level aggregate statistics with no player identifier. ARAM Mayhem augments are counted by pick frequency only, never by wins.</li>
+          <li><b>Beta tester badge, account check and Discord link</b>: with a beta code, your League account is registered for the badge (anonymous PUUID, region, beta code name, date, show/hide choice). Proving an account is yours (setting a given profile icon) keeps the PUUID and a hash of the proof token, never the token. Linking Discord (<code>/rifu lier</code>, only if you do it) keeps your Discord ID and the linked PUUID. "Remove my Riot ID from search" also erases all three.</li>
           <li><b>Player search index</b>: to suggest players as you type, the server keeps, for each player seen in a public finished game or a looked-up profile, their Riot ID, region, icon and level if known, when they were last seen and how many times (no rank, champion or history). It is deleted after 90 days without being seen; to remove your Riot ID sooner, use "Remove my Riot ID from search" in the app's feedback form or email us: it is deleted and never indexed again.</li>
           <li><b>Opt-in only</b> (off by default): feedback (never your Riot ID) and anonymous daily usage counters.</li>
           <li><b>Your rights (GDPR)</b>: access, correction and deletion on request at <a href="mailto:rifutajine@gmail.com">rifutajine@gmail.com</a>. Uninstalling RIFU and deleting its folder removes local data.</li>
