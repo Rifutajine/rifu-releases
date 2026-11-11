@@ -50,18 +50,52 @@ const TEXTS = {
 const T = document.documentElement.lang.startsWith('en') ? TEXTS.en : TEXTS.fr;
 
 /** Dernière version publiée (pré-versions comprises : la bêta est publiée en pré-version). */
-async function latestRelease() {
+async function fetchLatestRelease() {
   const res = await fetch(`https://api.github.com/repos/${RIFU_SITE.releasesRepo}/releases?per_page=10`, {
     headers: { Accept: 'application/vnd.github+json' },
+    cache: 'no-cache',
   });
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
   const releases = await res.json();
   for (const release of releases) {
     if (release.draft) continue;
-    const exe = (release.assets || []).find((a) => /^RIFU-Setup-.*\.exe$/i.test(a.name));
+    const exe = (release.assets || []).find((a) => /^RIFU-Setup-.*\.exe$/i.test(a.name) && a.state !== 'starter');
     if (exe) return { version: release.tag_name.replace(/^v/, ''), date: release.published_at, url: exe.browser_download_url, size: exe.size, page: release.html_url };
   }
   throw new Error('Aucun installeur publié');
+}
+
+/*
+ * L'API GitHub sans compte est limitée à 60 appels par heure et par adresse IP (box partagée, 4G,
+ * plusieurs onglets…). Au-delà, le bouton retombait sur la page des versions au lieu de lancer le
+ * téléchargement. On garde donc la dernière réponse valide dans le navigateur et on la réutilise
+ * si l'API refuse, et on retente une fois après une courte pause.
+ */
+const CACHE_KEY = 'rifu-latest-release';
+const readCache = () => {
+  try {
+    const r = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+    return r && typeof r.url === 'string' && r.url.startsWith('https://github.com/') ? r : null;
+  } catch { return null; }
+};
+const writeCache = (r) => { try { localStorage.setItem(CACHE_KEY, JSON.stringify(r)); } catch { /* stockage bloqué */ } };
+
+async function latestRelease() {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const r = await fetchLatestRelease();
+      writeCache(r);
+      return r;
+    } catch (err) {
+      if (attempt === 0) await new Promise((ok) => setTimeout(ok, 1500));
+      else {
+        const cached = readCache();
+        if (cached) return cached;
+        throw err;
+      }
+    }
+  }
+  throw new Error('inaccessible');
 }
 
 const formatDate = (iso) => new Date(iso).toLocaleDateString(T.locale, { day: 'numeric', month: 'long', year: 'numeric' });
@@ -71,8 +105,17 @@ async function wireDownloads() {
   const buttons = document.querySelectorAll('[data-download]');
   const metas = document.querySelectorAll('[data-download-meta]');
   if (!buttons.length) return;
+  const release = latestRelease();
+  release.catch(() => {});
+  // Un clic avant la réponse de GitHub suivait l'adresse de secours (page des versions) :
+  // on attend la réponse puis on lance le téléchargement de l'installeur.
+  buttons.forEach((b) => b.addEventListener('click', async (e) => {
+    if (b.href.endsWith('.exe') || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    try { window.location.assign((await release).url); } catch { window.location.assign(releasesPage); }
+  }));
   try {
-    const r = await latestRelease();
+    const r = await release;
     buttons.forEach((b) => { b.href = r.url; b.setAttribute('download', ''); });
     metas.forEach((m) => {
       m.textContent = `${T.version} ${r.version} · ${formatDate(r.date)} · ${formatSize(r.size)} · `;
