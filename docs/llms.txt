@@ -1,0 +1,27 @@
+# RIFU
+
+> RIFU est une application compagnon gratuite pour League of Legends, sur Windows 10 et 11 (serveur EUW), en bêta fermée sur invitation. Elle suit la partie de la sélection des champions au bilan : en sélection, elle lit les manques de la composition (frontline, engage, peel, contrôle, dégâts physiques ou magiques) et propose trois champions du pool du joueur, chacun avec sa raison ; au chargement, elle affiche les dix joueurs (rang, maîtrise, forme, groupes, tags) ; en partie, des overlays (HUD, panneau Ctrl + X, écarts d'équipement, minuteurs) ; après la partie, une note sur 100 pondérée par rôle. Elle n'utilise que les API officielles de Riot, ne lit jamais la mémoire du jeu, ne donne ni estimation de MMR ni probabilité de victoire, et n'a pas besoin du client Overwolf. RIFU n'est pas approuvé par Riot Games.
+
+RIFU is a free League of Legends companion app for Windows 10 and 11 (EUW server), in invite-only closed beta. It suggests three champions from the player's own pool in champion select based on what the team composition lacks, scouts all ten players on the loading screen, shows in-game overlays, and scores each game out of 100. Official Riot APIs only; no MMR estimate; no Overwolf client needed.
+
+## Pages (français)
+
+- [Accueil](https://rifutajine.github.io/rifu-releases/): présentation, démo de draft, parcours en quatre moments, comparatif, FAQ
+- [Toutes les fonctions](https://rifutajine.github.io/rifu-releases/fonctions.html): chaque écran et chaque outil en détail, et ce que RIFU ne fait pas
+- [Télécharger](https://rifutajine.github.io/rifu-releases/telecharger.html): installeur officiel et étapes d'installation
+- [RIFU, alternative à Porofessor](https://rifutajine.github.io/rifu-releases/alternative-porofessor.html): comparatif fonction par fonction
+- [RIFU, alternative à DPM](https://rifutajine.github.io/rifu-releases/alternative-dpm.html): comparatif fonction par fonction
+- [Confidentialité](https://rifutajine.github.io/rifu-releases/confidentialite.html): données lues, envoyées et conservées
+
+## Pages (English)
+
+- [Home](https://rifutajine.github.io/rifu-releases/en/)
+- [Every feature](https://rifutajine.github.io/rifu-releases/en/features.html)
+- [Download](https://rifutajine.github.io/rifu-releases/en/download.html)
+- [Porofessor alternative](https://rifutajine.github.io/rifu-releases/en/porofessor-alternative.html)
+- [DPM alternative](https://rifutajine.github.io/rifu-releases/en/dpm-alternative.html)
+
+## Optional
+
+- [Releases](https://github.com/Rifutajine/rifu-releases/releases): installeurs Windows et notes de version
+- [Discord](https://discord.gg/CGRcbW4SVw): communauté et codes bêta

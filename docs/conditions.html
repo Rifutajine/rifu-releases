@@ -5,31 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Conditions d'utilisation · RIFU</title>
   <meta name="description" content="Conditions d'utilisation de RIFU, app compagnon gratuite pour League of Legends.">
-  <meta name="theme-color" content="#060911">
+  <meta name="theme-color" content="#05080E">
+  <meta name="color-scheme" content="dark">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://rifutajine.github.io/rifu-releases/conditions.html">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
+  <script>document.documentElement.classList.add('js')</script>
   <script src="assets/site.js" defer></script>
 </head>
 <body class="doc-page">
   <a class="skip" href="#contenu">Aller au contenu</a>
+  <svg class="sprite" aria-hidden="true"><defs>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></symbol>
+    <symbol id="i-runes" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="m4.9 4.9 2.8 2.8"/><path d="M2 12h4"/><circle cx="12" cy="12" r="4"/><path d="M12 18v4"/><path d="M18 12h4"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-skin" viewBox="0 0 24 24"><path d="M20.4 6.6 16 4a4 4 0 0 1-8 0L3.6 6.6a1 1 0 0 0-.5 1.2l1.4 4a1 1 0 0 0 1.3.6L7 12v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-8l1.2.4a1 1 0 0 0 1.3-.6l1.4-4a1 1 0 0 0-.5-1.2Z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M2 14h4"/><path d="M10 8h4"/><path d="M18 16h4"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9Z"/><path d="M19 16v4M17 18h4"/></symbol>
+    <symbol id="i-quiz" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 20 20"><path d="M5 10.5 8.5 14 15 6.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-discord" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.32 4.37A19.8 19.8 0 0 0 15.4 2.85a.07.07 0 0 0-.08.04c-.21.38-.45.87-.61 1.25a18.3 18.3 0 0 0-5.49 0 12.6 12.6 0 0 0-.62-1.25.08.08 0 0 0-.08-.04 19.7 19.7 0 0 0-4.89 1.52.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06a.08.08 0 0 0 .03.06 19.9 19.9 0 0 0 5.99 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.23-2a.08.08 0 0 0-.04-.1 13.1 13.1 0 0 1-1.87-.9.08.08 0 0 1 0-.13l.37-.29a.07.07 0 0 1 .08-.01c3.93 1.8 8.18 1.8 12.07 0a.07.07 0 0 1 .08 0l.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.65-1.87.9a.08.08 0 0 0-.04.1c.36.7.77 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.01-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.67-3.55-13.66a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.16-1.09-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.33-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.09-2.15-2.42s.95-2.42 2.15-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.33-.95 2.42-2.16 2.42Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></symbol>
+  </defs></svg>
 
-  <header class="top">
-    <div class="wrap">
-      <a class="brand" href="./" aria-label="RIFU, accueil"><img src="assets/logo.svg" alt="" width="28" height="28"><span>RIFU</span><small class="brand-beta">Bêta</small></a>
+  <header class="top" id="top">
+    <div class="top-bar">
+      <a class="brand" href="./" aria-label="RIFU, accueil">
+        <img src="assets/logo.svg" alt="" width="28" height="28">
+        <span>RIFU</span>
+        <small class="brand-beta">Bêta</small>
+      </a>
       <nav class="nav" aria-label="Sections">
-        <a href="./#demo">Draft</a>
-        <a href="./#parcours">En partie</a>
+        <a href="./#parcours">Parcours</a>
         <a href="./#progression">Progression</a>
-        <a href="./#modes">ARAM</a>
-        <a href="./#fonctions">Fonctions</a>
+        <a href="./#modes">Modes</a>
+        <a href="fonctions.html">Fonctions</a>
         <a href="./#comparatif">Comparatif</a>
         <a href="./#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary btn-sm" href="telecharger.html?dl=1">Télécharger</a>
+      <button class="cmd-btn" type="button" data-cmd-open aria-label="Navigation rapide (Ctrl + K)">
+        <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Aller à…</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <a class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <a class="btn btn-primary btn-sm" href="telecharger.html?dl=1" data-dl data-goatcounter-click="cta-entete">Télécharger</a>
     </div>
   </header>
 
@@ -90,16 +126,16 @@
     </div>
   </main>
 
-  <footer>
-    <div class="wrap">
+  <footer class="foot">
+    <div class="wrap foot-grid">
       <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="26" height="26"><span>RIFU</span></a>
-      <nav class="foot-links" aria-label="Liens">
-        <a href="./">Accueil</a>
-        <a href="confidentialite.html">Confidentialité</a>
-        <a href="conditions.html">Conditions d'utilisation</a>
-        <a href="https://github.com/Rifutajine/rifu-releases/releases">Toutes les versions</a>
-        <a data-discord href="#">Discord</a>
+      <nav class="foot-links" aria-label="Pied de page">
+        <div><b>RIFU</b><a href="telecharger.html">Télécharger</a><a href="fonctions.html">Fonctions</a><a href="https://github.com/Rifutajine/rifu-releases/releases">Toutes les versions</a></div>
+        <div><b>Comparer</b><a href="alternative-porofessor.html">Alternative à Porofessor</a><a href="alternative-dpm.html">Alternative à DPM</a></div>
+        <div><b>Aide</b><a data-discord href="#">Discord</a><span data-contact><a href="#">Contact</a></span><a href="en/" hreflang="en" lang="en">English</a></div>
+        <div><b>Légal</b><a href="confidentialite.html">Confidentialité et mentions légales</a><a href="conditions.html">Conditions d'utilisation</a></div>
       </nav>
+      <p class="legal" lang="en">RIFU isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
     </div>
   </footer>
 </body>
