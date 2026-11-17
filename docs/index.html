@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="RIFU · L'app compagnon League of Legends gratuite">
   <meta name="twitter:description" content="Draft dans votre pool, scouting des 10 joueurs, overlays en jeu et bilan noté sur 100. Gratuit, pour Windows.">
   <meta name="twitter:image" content="https://rifutajine.github.io/rifu-releases/assets/og.jpg">
-  <meta name="theme-color" content="#070a12">
+  <meta name="theme-color" content="#060911">
   <meta name="color-scheme" content="dark">
   <link rel="manifest" href="site.webmanifest">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
@@ -47,6 +47,29 @@
         "url": "https://rifutajine.github.io/rifu-releases/",
         "name": "RIFU",
         "inLanguage": "fr-FR"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://rifutajine.github.io/rifu-releases/#org",
+        "name": "RIFU",
+        "url": "https://rifutajine.github.io/rifu-releases/",
+        "logo": "https://rifutajine.github.io/rifu-releases/assets/logo.svg",
+        "sameAs": [
+          "https://github.com/Rifutajine/rifu-releases",
+          "https://discord.gg/CGRcbW4SVw"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://rifutajine.github.io/rifu-releases/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "RIFU",
+            "item": "https://rifutajine.github.io/rifu-releases/"
+          }
+        ]
       },
       {
         "@type": "SoftwareApplication",
@@ -86,13 +109,18 @@
       },
       {
         "@type": "FAQPage",
+        "@id": "https://rifutajine.github.io/rifu-releases/#faq-schema",
         "mainEntity": [
           {"@type": "Question", "name": "RIFU est-il gratuit ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, entièrement. À terme, RIFU sera financé par une publicité discrète, uniquement dans la fenêtre RIFU et hors partie : jamais en sélection, au chargement, en jeu ni dans un overlay."}},
           {"@type": "Question", "name": "RIFU remplace-t-il Porofessor ou DPM ?", "acceptedAnswer": {"@type": "Answer", "text": "C'est son ambition. RIFU réunit dans une seule app le scouting de l'écran de chargement, l'assistant de draft, les overlays en jeu, le bilan de partie et le suivi des LP, sans abonnement. Son point fort : il explique ce qui manque à votre compo et propose des champions de votre propre pool."}},
           {"@type": "Question", "name": "Est-ce que je risque quelque chose avec mon compte ?", "acceptedAnswer": {"@type": "Answer", "text": "RIFU n'utilise que les interfaces que Riot met à disposition des applications tierces : l'API Riot, l'API du client League et les données de la partie en cours. Il ne lit jamais la mémoire du jeu, ne touche aux fichiers de League que pour activer les replays si vous le demandez, et ne joue jamais à votre place. Il suit les règles de Riot pour les applications tierces : plusieurs options plutôt qu'un choix imposé, pas d'estimation de MMR, pas d'identification des joueurs masqués en sélection, pas de suivi des sorts ni des ultimes adverses."}},
+          {"@type": "Question", "name": "Comment obtenir un code bêta ?", "acceptedAnswer": {"@type": "Answer", "text": "La bêta est fermée et se fait sur invitation, avec un code personnel par joueur. Rejoignez le Discord RIFU pour demander une place."}},
           {"@type": "Question", "name": "Comment est calculée la note sur 100 ?", "acceptedAnswer": {"@type": "Answer", "text": "Chaque mesure de la partie (éliminations, participation, dégâts, or, sbires, vision, objectifs) est rapportée au meilleur des dix joueurs, puis pondérée selon votre rôle. Le meilleur de l'équipe gagnante est MVP ; le bilan nomme aussi le meilleur de l'autre équipe. Ce n'est ni un rang ni une estimation de MMR."}},
+          {"@type": "Question", "name": "Les overlays gênent-ils le jeu ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Ils ne prennent jamais le focus du jeu, le HUD laisse passer vos clics, et vous réglez leur opacité (de 30 à 100 %) et leur taille. Pendant la bêta, ils demandent le mode fenêtré sans bordure ; le plein écran viendra avec la version signée."}},
           {"@type": "Question", "name": "Faut-il installer Overwolf ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. RIFU est une application autonome : elle n'a pas besoin du client Overwolf."}},
-          {"@type": "Question", "name": "Quels modes, quels serveurs, quels systèmes ?", "acceptedAnswer": {"@type": "Answer", "text": "La Faille de l'invocateur (normales, classées, Coop contre IA, parties personnalisées), la Partie rapide, l'ARAM et l'ARAM Mayhem. En Arena, RIFU ne donne pas de conseil de draft, et les parties Brawl ne sont pas suivies. Serveur EUW, sur Windows 10 et 11."}}
+          {"@type": "Question", "name": "Pourquoi Windows affiche-t-il un avertissement ?", "acceptedAnswer": {"@type": "Answer", "text": "Pendant la bêta, l'installeur n'est pas encore signé par un certificat, donc Windows SmartScreen le signale. La signature est prévue pour la sortie publique. En attendant, téléchargez RIFU uniquement depuis ce site ou la page officielle des versions."}},
+          {"@type": "Question", "name": "Quels modes, quels serveurs, quels systèmes ?", "acceptedAnswer": {"@type": "Answer", "text": "La Faille de l'invocateur (normales, classées, Coop contre IA, parties personnalisées), la Partie rapide, l'ARAM et l'ARAM Mayhem. En Arena, RIFU ne donne pas de conseil de draft, et les parties Brawl ne sont pas suivies. Serveur EUW, sur Windows 10 et 11."}},
+          {"@type": "Question", "name": "Quelles données sont envoyées ?", "acceptedAnswer": {"@type": "Answer", "text": "Le minimum pour afficher les profils et l'écran de chargement. Tout le reste reste sur votre PC, et les retours ne partent que si vous l'activez. Le détail est dans la politique de confidentialité."}}
         ]
       }
     ]
@@ -120,12 +148,17 @@
     <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9Z"/><path d="M19 16v4M17 18h4"/></symbol>
     <symbol id="i-quiz" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
     <symbol id="i-check" viewBox="0 0 20 20"><path d="M5 10.5 8.5 14 15 6.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
     <symbol id="i-discord" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.32 4.37A19.8 19.8 0 0 0 15.4 2.85a.07.07 0 0 0-.08.04c-.21.38-.45.87-.61 1.25a18.3 18.3 0 0 0-5.49 0 12.6 12.6 0 0 0-.62-1.25.08.08 0 0 0-.08-.04 19.7 19.7 0 0 0-4.89 1.52.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06a.08.08 0 0 0 .03.06 19.9 19.9 0 0 0 5.99 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.23-2a.08.08 0 0 0-.04-.1 13.1 13.1 0 0 1-1.87-.9.08.08 0 0 1 0-.13l.37-.29a.07.07 0 0 1 .08-.01c3.93 1.8 8.18 1.8 12.07 0a.07.07 0 0 1 .08 0l.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.65-1.87.9a.08.08 0 0 0-.04.1c.36.7.77 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.01-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.67-3.55-13.66a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.16-1.09-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.33-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.09-2.15-2.42s.95-2.42 2.15-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.33-.95 2.42-2.16 2.42Z"/></symbol>
   </defs></svg>
 
   <header class="top" id="top">
     <div class="wrap">
-      <a class="brand" href="./" aria-label="RIFU, accueil"><img src="assets/logo.svg" alt="" width="28" height="28"><span>RIFU</span></a>
+      <a class="brand" href="./" aria-label="RIFU, accueil">
+        <img src="assets/logo.svg" alt="" width="28" height="28">
+        <span>RIFU</span>
+        <small class="brand-beta">Bêta</small>
+      </a>
       <nav class="nav" aria-label="Sections">
         <a href="./#demo">Draft</a>
         <a href="./#parcours">En partie</a>
@@ -135,11 +168,15 @@
         <a href="./#comparatif">Comparatif</a>
         <a href="./#faq">FAQ</a>
       </nav>
+      <button class="cmd-btn" type="button" data-cmd-open aria-label="Ouvrir la navigation rapide (Ctrl + K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-search"/></svg>
+        <span>Aller à…</span>
+        <kbd>Ctrl</kbd><kbd>K</kbd>
+      </button>
       <a class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
       <a class="btn btn-primary btn-sm" href="telecharger.html?dl=1">Télécharger</a>
     </div>
   </header>
-
 
   <main id="contenu">
     <div class="hero" id="telecharger">
@@ -151,19 +188,30 @@
           <path data-seg="2" d="M48.5 58.3 28.1 58.3 24.2 46.3 52.4 46.3Z"/>
           <path data-seg="3" d="M60.2 25.8 53.9 45.2 41.3 45.2 50 18.4Z"/>
         </svg>
+
+        <div class="hero-top-meta">
+          <span class="eyebrow">Compagnon Windows · Serveur EUW</span>
+          <span class="hero-status"><i></i><span>Bêta sur invitation · <a data-discord href="#">Obtenir un code sur Discord →</a></span></span>
+        </div>
+
         <h1>
           <span class="big"><span>Jouez avec un</span> <span class="accent">coup d’avance.</span></span>
           <span class="sub">RIFU, l'app compagnon League of Legends gratuite</span>
         </h1>
+
         <div class="hero-row">
           <p class="lead">Il vous suit de la sélection au bilan : <strong>draft dans votre pool</strong>, <strong>scouting des dix joueurs</strong>, <strong>overlays en jeu</strong> et <strong>note de partie sur 100</strong>, en classée comme en ARAM. Il vous dit pourquoi, et vous laisse choisir. Tout est gratuit.</p>
           <div class="hero-side">
             <div>
               <div class="cta">
-                <a class="btn btn-primary btn-lg" href="telecharger.html?dl=1"><svg class="ico"><use href="#i-download"/></svg>Télécharger pour Windows</a>
-                <a class="btn btn-ghost btn-lg" href="#demo">Essayer une draft</a>
+                <a class="btn btn-primary btn-lg" id="hero-download-btn" href="telecharger.html?dl=1"><svg class="ico"><use href="#i-download"/></svg>Télécharger pour Windows</a>
+                <a class="btn btn-ghost btn-lg" id="hero-demo-btn" href="#demo">Essayer une draft</a>
               </div>
               <p class="dl-meta" data-download-meta>Windows 10 et 11 · code bêta requis</p>
+            </div>
+            <div class="beta-flow" aria-label="Parcours d'accès bêta">
+              <span><b>1</b> Installez l'app Windows</span>
+              <span><b>2</b> <a data-discord href="#">Demandez votre code bêta sur Discord</a></span>
             </div>
             <ul class="proof">
               <li>100 % gratuit</li>
@@ -174,10 +222,20 @@
         </div>
 
         <div class="console" id="demo" data-demo>
+          <div class="console-window" aria-hidden="true">
+            <span class="console-win-brand"><img src="assets/logo.svg" alt="" width="16" height="16">RIFU <small class="brand-beta">Bêta</small></span>
+            <div class="console-win-steps">
+              <span class="is-active">1 · Sélection</span>
+              <span>2 · Chargement</span>
+              <span>3 · En jeu</span>
+              <span>4 · Bilan</span>
+            </div>
+            <span class="console-win-status">League connecté · EUW</span>
+          </div>
           <div class="console-bar">
             <span class="timer" data-timer><span>30</span></span>
             <div class="console-phase"><small>Démo jouable · votre choix au mid</small><strong data-phase aria-live="polite">La draft commence…</strong></div>
-            <button class="console-replay" type="button" data-replay>Rejouer</button>
+            <button class="console-replay" id="demo-replay-btn" type="button" data-replay><svg class="ico"><use href="#i-refresh"/></svg>Rejouer</button>
           </div>
           <div class="console-grid">
             <div class="team team-ally">
@@ -210,23 +268,29 @@
               </div>
               <div class="gaps" data-gaps aria-live="polite"></div>
               <div class="options">
-                <button class="option" type="button" data-option aria-pressed="false" data-name="Galio" data-axes="3,3,1,3" data-verdict="Galio : vos deux manques sont comblés. C'est l'option qui équilibre le plus la compo.">
+                <button class="option" id="opt-galio" type="button" data-option aria-pressed="false" data-name="Galio" data-axes="3,3,1,3" data-verdict="Galio : vos deux manques sont comblés. C'est l'option qui équilibre le plus la compo.">
                   <span class="option-head"><img src="assets/champions/galio.webp" alt="" width="44" height="44"><span><b>Galio</b><span>Votre pool · maîtrise 50 k</span></span></span>
                   <span class="tags"><em>Dégâts AP</em><em>Frontline</em><em>Engage</em></span>
                   <p>Le seul avec de la frontline et de l'engage.</p>
                 </button>
-                <button class="option" type="button" data-option aria-pressed="false" data-name="Orianna" data-axes="0,1,2,3" data-verdict="Orianna : les dégâts magiques sont là et Zed est mieux tenu, mais la frontline reste faible.">
+                <button class="option" id="opt-orianna" type="button" data-option aria-pressed="false" data-name="Orianna" data-axes="0,1,2,3" data-verdict="Orianna : les dégâts magiques sont là et Zed est mieux tenu, mais la frontline reste faible.">
                   <span class="option-head"><img src="assets/champions/orianna.webp" alt="" width="44" height="44"><span><b>Orianna</b><span>Votre pool · maîtrise 40 k</span></span></span>
                   <span class="tags"><em>Dégâts AP</em><em>Contrôle</em></span>
                   <p>Le seul bon contre Zed, avec du contrôle de zone.</p>
                 </button>
-                <button class="option" type="button" data-option aria-pressed="false" data-name="Ahri" data-axes="0,1,0,2" data-verdict="Ahri : votre champion le plus sûr. Les dégâts magiques sont là, la frontline reste faible.">
+                <button class="option" id="opt-ahri" type="button" data-option aria-pressed="false" data-name="Ahri" data-axes="0,1,0,2" data-verdict="Ahri : votre champion le plus sûr. Les dégâts magiques sont là, la frontline reste faible.">
                   <span class="option-head"><img src="assets/champions/ahri.webp" alt="" width="44" height="44"><span><b>Ahri</b><span>Votre pool · maîtrise 100 k</span></span></span>
                   <span class="tags"><em>Dégâts AP</em><em>Confort</em></span>
                   <p>Vous l'avez gagné 7 fois sur 10 : votre meilleur repère de confort.</p>
                 </button>
               </div>
-              <p class="verdict" data-verdict-out aria-live="polite"></p>
+              <div class="console-foot">
+                <p class="verdict" data-verdict-out aria-live="polite"></p>
+                <div class="import-preview" data-import-bar hidden>
+                  <div class="import-meta" data-import-meta></div>
+                  <button class="import-btn" id="demo-import-btn" type="button" data-import-btn>Tout importer dans League</button>
+                </div>
+              </div>
             </div>
 
             <div class="team team-enemy">
@@ -242,6 +306,25 @@
           </div>
         </div>
         <p class="demo-note">Démonstration illustrative. Dans l'app, l'analyse s'appuie sur les fiches des 173 champions, vos parties et les statistiques du patch.</p>
+
+        <div class="telemetry-strip" aria-label="Repères clés de RIFU">
+          <div class="telemetry-item">
+            <strong>173 <em>champions</em></strong>
+            <span>Analysés selon votre pool, les manques de compo et le patch en cours</span>
+          </div>
+          <div class="telemetry-item">
+            <strong>10 <em>joueurs</em></strong>
+            <span>Scoutés dès le chargement : rangs, prémades, forme sur 12 h et 30 j</span>
+          </div>
+          <div class="telemetry-item">
+            <strong>Note <em>/ 100</em></strong>
+            <span>Calculée face aux 10 joueurs de la partie et pondérée selon votre rôle</span>
+          </div>
+          <div class="telemetry-item">
+            <strong>0 € <em>· Autonome</em></strong>
+            <span>Zéro abonnement, sans client Overwolf, conforme aux règles Riot</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -249,8 +332,9 @@
       <section class="journey-intro">
         <div class="wrap">
           <div class="section-head">
+            <span class="eyebrow">Fil conducteur en temps réel</span>
             <h2>Quatre moments, <span class="accent">un seul compagnon</span></h2>
-            <p>De la sélection des champions au bilan, RIFU change d'écran en même temps que League. Les captures viennent de l'app, avec un compte de démonstration.</p>
+            <p>De la sélection des champions au bilan, RIFU change d'écran en même temps que League. Survolez les points clés ou cliquez sur les repères numérotés pour inspecter chaque écran.</p>
           </div>
         </div>
       </section>
@@ -266,18 +350,39 @@
         <div class="wrap">
           <div class="chapter-head">
             <div class="chapter-intro">
+              <span class="eyebrow">01 · Sélection des champions</span>
               <h2>Vos options, chacune avec sa raison</h2>
               <p>RIFU suit la draft en direct et vous dit ce que chaque champion de votre pool apporte de plus que les autres. Vous gardez toujours le dernier mot.</p>
             </div>
             <ul class="checks">
-              <li>Trois options de votre pool, sans classement imposé</li>
-              <li>Une raison propre à chacune : «&nbsp;Le seul avec de la frontline&nbsp;», «&nbsp;7&nbsp;V sur 11&nbsp;»</li>
-              <li>Tapez n'importe quel champion : RIFU l'évalue à côté des autres</li>
+              <li data-spot-target="1">Trois options de votre pool, sans classement imposé</li>
+              <li data-spot-target="2">Une raison propre à chacune : «&nbsp;Le seul avec de la frontline&nbsp;», «&nbsp;7&nbsp;V sur 11&nbsp;»</li>
+              <li data-spot-target="3">Tapez n'importe quel champion : RIFU l'évalue à côté des autres</li>
               <li>Bans suggérés et compo «&nbsp;nous contre eux&nbsp;», axe par axe</li>
               <li>Champion verrouillé : runes, sorts et set d'objets avec «&nbsp;Tout importer&nbsp;»</li>
             </ul>
           </div>
-          <figure class="shot"><a class="zoom" href="assets/captures/selection.webp"><img src="assets/captures/selection-1x.webp" srcset="assets/captures/selection-1x.webp 1240w, assets/captures/selection.webp 2480w" sizes="(max-width: 1240px) 100vw, 1200px" width="2480" height="1550" loading="lazy" alt="Sélection des champions dans RIFU : votre équipe, les adversaires et les options de votre pool, Ahri et Galio, chacune avec ce qu'elle apporte de plus."></a></figure>
+          <figure class="shot">
+            <div class="shot-bar" aria-hidden="true">
+              <span class="shot-dots"><i></i><i></i><i></i><span>RIFU · Sélection des champions</span></span>
+              <span class="shot-hint">Survolez les repères 1–3 · Cliquez pour agrandir en 2×</span>
+            </div>
+            <a class="zoom" href="assets/captures/selection.webp"><img src="assets/captures/selection-1x.webp" srcset="assets/captures/selection-1x.webp 1240w, assets/captures/selection.webp 2480w" sizes="(max-width: 1240px) 100vw, 1200px" width="2480" height="1550" loading="lazy" alt="Sélection des champions dans RIFU : votre équipe, les adversaires et les options de votre pool, Ahri et Galio, chacune avec ce qu'elle apporte de plus."></a>
+            <div class="hotspots" aria-hidden="true">
+              <div class="hotspot is-left" data-spot="1" style="--x: 24%; --y: 22%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">1</button>
+                <div class="hotspot-card"><b>Suivi de draft en direct</b>Évalue chaque option de votre pool face aux 32 compositions probables et aux bans.</div>
+              </div>
+              <div class="hotspot" data-spot="2" style="--x: 48%; --y: 56%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">2</button>
+                <div class="hotspot-card"><b>Ahri · Repère de confort</b>7 victoires sur 11 et 100 k de maîtrise : l'option la plus sûre en aveugle.</div>
+              </div>
+              <div class="hotspot is-right" data-spot="3" style="--x: 69%; --y: 56%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">3</button>
+                <div class="hotspot-card"><b>Galio · Comble vos manques</b>Identifié comme le seul champion de votre pool qui apporte de la frontline.</div>
+              </div>
+            </div>
+          </figure>
         </div>
       </section>
 
@@ -285,18 +390,39 @@
         <div class="wrap">
           <div class="chapter-head">
             <div class="chapter-intro">
+              <span class="eyebrow is-cyan">02 · Écran de chargement</span>
               <h2>Les dix joueurs, avant la Faille</h2>
               <p>Un écran plein par-dessus le chargement de League, avec le plan de jeu en tête. Rang, forme, groupes : vous savez à qui vous avez affaire avant la première seconde.</p>
             </div>
             <ul class="checks">
-              <li>Rang, maîtrise, forme et activité de chaque joueur</li>
-              <li>Groupes écrits en clair : «&nbsp;Duo avec Poing&nbsp;», «&nbsp;Trio avec…&nbsp;»</li>
-              <li>Tags «&nbsp;En forme&nbsp;», «&nbsp;Spécialiste&nbsp;», «&nbsp;Série perdante&nbsp;»</li>
+              <li data-spot-target="1">Plan de jeu d'équipe et mémo personnel sur votre matchup en tête d'écran</li>
+              <li data-spot-target="2">Groupes écrits en clair : «&nbsp;Duo avec Poing&nbsp;», «&nbsp;Trio avec…&nbsp;»</li>
+              <li data-spot-target="3">Rang, maîtrise, activité 12&nbsp;h / 30&nbsp;j et tags («&nbsp;En forme&nbsp;», «&nbsp;Spécialiste&nbsp;»)</li>
               <li>Les rangs s'affichent d'abord, les fiches complètes suivent</li>
               <li>Rappel du défaut qui revient sur le champion que vous jouez, avec son conseil</li>
             </ul>
           </div>
-          <figure class="shot"><a class="zoom" href="assets/captures/chargement.webp"><img src="assets/captures/chargement-1x.webp" srcset="assets/captures/chargement-1x.webp 1280w, assets/captures/chargement.webp 2560w" sizes="(max-width: 1240px) 100vw, 1200px" width="2560" height="1440" loading="lazy" alt="Écran de chargement plein écran de RIFU : le plan de jeu en tête, puis les dix joueurs avec l'illustration de leur skin, leur rang, leurs tags, leur forme et leur groupe."></a></figure>
+          <figure class="shot">
+            <div class="shot-bar" aria-hidden="true">
+              <span class="shot-dots"><i></i><i></i><i></i><span>RIFU · Chargement plein écran (Espace pour basculer)</span></span>
+              <span class="shot-hint">Survolez les repères 1–3 · Cliquez pour agrandir en 2×</span>
+            </div>
+            <a class="zoom" href="assets/captures/chargement.webp"><img src="assets/captures/chargement-1x.webp" srcset="assets/captures/chargement-1x.webp 1280w, assets/captures/chargement.webp 2560w" sizes="(max-width: 1240px) 100vw, 1200px" width="2560" height="1440" loading="lazy" alt="Écran de chargement plein écran de RIFU : le plan de jeu en tête, puis les dix joueurs avec l'illustration de leur skin, leur rang, leurs tags, leur forme et leur groupe."></a>
+            <div class="hotspots" aria-hidden="true">
+              <div class="hotspot is-left" data-spot="1" style="--x: 28%; --y: 14%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">1</button>
+                <div class="hotspot-card"><b>Plan de jeu & mémo matchup</b>Synthèse des forces d'engage et rappel de votre note personnelle contre Galio.</div>
+              </div>
+              <div class="hotspot is-left" data-spot="2" style="--x: 18%; --y: 42%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">2</button>
+                <div class="hotspot-card"><b>Groupes prémades en clair</b>Repère immédiatement les Duos et Trios alliés comme adversaires.</div>
+              </div>
+              <div class="hotspot" data-spot="3" style="--x: 50%; --y: 52%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">3</button>
+                <div class="hotspot-card"><b>Forme récente & activité</b>Taux de victoire sur 12 h et 30 jours, KDA moyen et séries en cours.</div>
+              </div>
+            </div>
+          </figure>
         </div>
       </section>
 
@@ -304,20 +430,39 @@
         <div class="wrap">
           <div class="chapter-head">
             <div class="chapter-intro">
+              <span class="eyebrow">03 · Overlays en jeu</span>
               <h2>Des overlays qui vous aident, sans jouer à votre place</h2>
               <p>Un HUD compact qui laisse passer vos clics, le panneau <kbd>Ctrl</kbd> + <kbd>X</kbd> et les écarts d'équipement au <kbd>TAB</kbd>. Trois préréglages : Minimal, Standard, Complet.</p>
             </div>
             <ul class="checks">
-              <li>CS/min face à votre adversaire de lane, participation, vision par minute</li>
-              <li>Prochain achat, adapté à la compo adverse sans affaiblir votre champion</li>
-              <li><kbd>Ctrl</kbd> + <kbd>X</kbd> : une ligne par lane, chaque joueur face à son adversaire</li>
+              <li data-spot-target="1">Prochain achat adapté à la compo adverse sans affaiblir votre champion</li>
+              <li data-spot-target="2"><kbd>Ctrl</kbd> + <kbd>X</kbd> : une ligne par lane, chaque joueur face à son adversaire</li>
+              <li data-spot-target="3">HUD compact : CS/min face à votre vis-à-vis, participation, vision par minute</li>
               <li>Minuteurs du dragon et du Nashor posés sur la mini-carte</li>
               <li>Or des équipes et écart d'équipement en maintenant <kbd>TAB</kbd></li>
             </ul>
           </div>
           <figure class="shot">
+            <div class="shot-bar" aria-hidden="true">
+              <span class="shot-dots"><i></i><i></i><i></i><span>RIFU · Panneau Ctrl + X & HUD en partie</span></span>
+              <span class="shot-hint">Survolez les repères 1–3 · Cliquez pour agrandir en 2×</span>
+            </div>
             <a class="zoom" href="assets/captures/panneau.webp"><img src="assets/captures/panneau-1x.webp" srcset="assets/captures/panneau-1x.webp 1440w, assets/captures/panneau.webp 2880w" sizes="(max-width: 1240px) 100vw, 1200px" width="2880" height="1800" loading="lazy" alt="Panneau Ctrl + X en partie : le prochain achat et les étapes du build en haut, puis une ligne par lane avec chaque joueur face à son adversaire, son rang, sa forme et ses tags."></a>
             <img src="assets/captures/hud-1x.webp" srcset="assets/captures/hud-1x.webp 300w, assets/captures/hud.webp 600w" sizes="(max-width: 960px) 40vw, 300px" width="600" height="376" class="float float-hud" loading="lazy" alt="HUD de RIFU en partie : CS par minute face à l'adversaire, participation, vision et prochain achat.">
+            <div class="hotspots" aria-hidden="true">
+              <div class="hotspot is-left" data-spot="1" style="--x: 18%; --y: 16%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">1</button>
+                <div class="hotspot-card"><b>Prochain achat intelligent</b>Recommande l'objet optimal selon la frontline et le contrôle adverses.</div>
+              </div>
+              <div class="hotspot" data-spot="2" style="--x: 50%; --y: 55%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">2</button>
+                <div class="hotspot-card"><b>Duel de lane ligne par ligne</b>Visualisez chaque matchup direct en appuyant sur Ctrl + X.</div>
+              </div>
+              <div class="hotspot is-right" data-spot="3" style="--x: 84%; --y: 82%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">3</button>
+                <div class="hotspot-card"><b>HUD à clics traversants</b>Vos repères temps réel (CS/min, KP, vision) sans jamais bloquer la souris.</div>
+              </div>
+            </div>
           </figure>
         </div>
       </section>
@@ -326,21 +471,52 @@
         <div class="wrap">
           <div class="chapter-head">
             <div class="chapter-intro">
+              <span class="eyebrow is-cyan">04 · Bilan d'après-partie</span>
               <h2>Une note sur 100, et ce qui l'explique</h2>
               <p>Chaque mesure est comparée au meilleur des dix joueurs, avec des poids propres à votre rôle. Un support est jugé sur sa vision, pas sur ses sbires.</p>
             </div>
             <ul class="checks">
-              <li>Quatre onglets : Résumé, Déroulé, Comparaison, Joueurs</li>
-              <li>Ce qui a marché, ce qui coince : points forts et points à travailler, chiffre à l'appui</li>
+              <li data-spot-target="1">Note sur 100 pondérée par rôle, statut MVP et LP gagnés ou perdus</li>
+              <li data-spot-target="2">Ce qui a marché, ce qui coince : points forts et points à travailler, chiffre à l'appui</li>
+              <li data-spot-target="3">Quatre onglets (Résumé, Déroulé, Comparaison, Joueurs) et carte à partager</li>
               <li>Le moment où la partie a basculé, vos phases de jeu et votre duel de lane</li>
               <li>Votre partie face à votre moyenne, et vos records battus</li>
-              <li>LP gagnés ou perdus, et une image de la partie à partager</li>
             </ul>
           </div>
           <figure class="shot">
+            <div class="shot-bar" aria-hidden="true">
+              <span class="shot-dots"><i></i><i></i><i></i><span>RIFU · Bilan de partie & Note sur 100</span></span>
+              <span class="shot-hint">Survolez les repères 1–3 · Cliquez pour agrandir en 2×</span>
+            </div>
             <a class="zoom" href="assets/captures/bilan.webp"><img src="assets/captures/bilan-1x.webp" srcset="assets/captures/bilan-1x.webp 1240w, assets/captures/bilan.webp 2480w" sizes="(max-width: 1240px) 100vw, 1200px" width="2480" height="1550" loading="lazy" alt="Bilan de fin de partie, onglet Résumé : victoire, note de 92 sur 100, LP gagnés, points forts et chiffres clés."></a>
             <img src="assets/captures/note-1x.webp" srcset="assets/captures/note-1x.webp 952w, assets/captures/note.webp 1904w" sizes="(max-width: 960px) 56vw, 440px" width="1904" height="918" class="float float-note" loading="lazy" alt="Note de la partie : 92 sur 100, MVP, le meilleur adverse et la comparaison des deux équipes.">
+            <div class="hotspots" aria-hidden="true">
+              <div class="hotspot is-right" data-spot="1" style="--x: 81%; --y: 26%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">1</button>
+                <div class="hotspot-card"><b>Note 92 / 100 & MVP</b>Calculée sur vos vraies responsabilités de rôle, avec bouton de partage en 1 clic.</div>
+              </div>
+              <div class="hotspot" data-spot="2" style="--x: 42%; --y: 66%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">2</button>
+                <div class="hotspot-card"><b>Forces & axes de travail</b>Chaque badge (« Gros dégâts 4/10 », « Haute participation ») est justifié par les chiffres.</div>
+              </div>
+              <div class="hotspot is-left" data-spot="3" style="--x: 24%; --y: 86%;">
+                <button class="hotspot-pin" type="button" tabindex="-1">3</button>
+                <div class="hotspot-card"><b>Comparaison des 2 équipes</b>Identifie le MVP, le meilleur joueur adverse et les écarts par axe.</div>
+              </div>
+            </div>
           </figure>
+
+          <aside class="mid-cta" aria-label="Télécharger RIFU">
+            <div class="mid-cta-copy">
+              <span class="eyebrow">Prêt pour votre prochaine partie ?</span>
+              <h3>Quatre écrans automatiques, zéro abonnement.</h3>
+              <p>Installez RIFU en deux minutes sur Windows 10 ou 11 et demandez votre code bêta personnel sur le Discord.</p>
+            </div>
+            <div class="cta">
+              <a class="btn btn-primary" href="telecharger.html?dl=1"><svg class="ico"><use href="#i-download"/></svg>Télécharger pour Windows</a>
+              <a class="btn btn-ghost" data-discord href="#">Code bêta sur Discord</a>
+            </div>
+          </aside>
         </div>
       </section>
     </div>
@@ -348,6 +524,7 @@
     <section class="grow" id="progression">
       <div class="wrap">
         <div class="section-head">
+          <span class="eyebrow">Coaching continu & suivi des LP</span>
           <h2>Le défaut qui revient <span class="accent">devient votre priorité</span></h2>
           <p>RIFU relit chaque partie et retient ce qui se répète. Vous travaillez un point à la fois, et vous voyez quand il est réglé. Tout est comparé à votre propre niveau, jamais à d'autres joueurs.</p>
         </div>
@@ -357,7 +534,13 @@
             <li><span class="state">Priorité</span><b>Un objectif, choisi par vous</b><p>RIFU propose l'objectif qui va avec, par exemple «&nbsp;1 mort au plus avant 15 min&nbsp;». Vous le prenez, ou aucun.</p></li>
             <li><span class="state">Corrigé</span><b>Un défaut en moins</b><p>Quand vous ne le faites plus, il s'affiche «&nbsp;corrigé&nbsp;». Vos points forts sont suivis de la même façon.</p></li>
           </ol>
-          <figure class="shot"><a class="zoom" href="assets/captures/progression.webp"><img src="assets/captures/progression-1x.webp" srcset="assets/captures/progression-1x.webp 1240w, assets/captures/progression.webp 2480w" sizes="(max-width: 1000px) 100vw, 700px" width="2480" height="1550" loading="lazy" alt="Page Progression de RIFU : rang, forme récente et courbe des LP sur 30 jours, +132 LP."></a></figure>
+          <figure class="shot">
+            <div class="shot-bar" aria-hidden="true">
+              <span class="shot-dots"><i></i><i></i><i></i><span>RIFU · Progression & courbe des LP (30 jours)</span></span>
+              <span class="shot-hint">+132 LP</span>
+            </div>
+            <a class="zoom" href="assets/captures/progression.webp"><img src="assets/captures/progression-1x.webp" srcset="assets/captures/progression-1x.webp 1240w, assets/captures/progression.webp 2480w" sizes="(max-width: 1000px) 100vw, 700px" width="2480" height="1550" loading="lazy" alt="Page Progression de RIFU : rang, forme récente et courbe des LP sur 30 jours, +132 LP."></a>
+          </figure>
         </div>
         <ul class="grow-list">
           <li><h3>Votre semaine</h3><p>Le résumé de la semaine écoulée sur l'accueil, dès 5 parties.</p></li>
@@ -371,6 +554,7 @@
     <section id="modes">
       <div class="wrap">
         <div class="section-head">
+          <span class="eyebrow is-cyan">Tous vos modes de jeu</span>
           <h2>Faille, ARAM, Mayhem&nbsp;: <span class="accent">RIFU vous suit partout</span></h2>
           <p>Les conseils changent avec le mode. En ARAM, ce ne sont plus des rôles qui comptent, mais le banc et ce qui manque à l'équipe.</p>
         </div>
@@ -385,7 +569,7 @@
             </ul>
           </article>
           <article class="mode mode-featured">
-            <span class="mode-tag">ARAM</span>
+            <span class="mode-tag">ARAM & Mayhem</span>
             <h3>ARAM et ARAM Mayhem</h3>
             <ul class="checks">
               <li>Ce qui manque à votre équipe : tank, engage, poke, soins</li>
@@ -411,31 +595,51 @@
     <section id="fonctions">
       <div class="wrap">
         <div class="section-head">
+          <span class="eyebrow">Tout-en-un sans compromis</span>
           <h2>Une seule app, <span class="accent">zéro abonnement</span></h2>
           <p>Ce qu'il fallait chercher dans plusieurs outils, dont un payant, RIFU le réunit au même endroit.</p>
         </div>
         <div class="features">
           <figure class="feature">
-            <figcaption><h3>Tier list par rôle</h3><p>Podium des trois meilleurs, tiers S+ à D (S+ réservé aux cinq meilleurs du rôle) et filtre «&nbsp;Mon pool&nbsp;», calculés par RIFU sur les parties classées EUW Émeraude et plus.</p></figcaption>
+            <figcaption>
+              <span class="eyebrow">Méta EUW Émeraude+</span>
+              <h3>Tier list par rôle</h3>
+              <p>Podium des trois meilleurs, tiers S+ à D (S+ réservé aux cinq meilleurs du rôle) et filtre «&nbsp;Mon pool&nbsp;», calculés par RIFU sur les parties classées EUW Émeraude et plus.</p>
+            </figcaption>
             <a class="zoom" href="assets/captures/tier-list.webp"><img src="assets/captures/tier-list-1x.webp" srcset="assets/captures/tier-list-1x.webp 1240w, assets/captures/tier-list.webp 2480w" sizes="(max-width: 1040px) 100vw, 780px" width="2480" height="1550" loading="lazy" alt="Tier list RIFU du mid : podium des trois meilleurs, puis le classement par palier avec victoires, choix et bannissements."></a>
           </figure>
           <figure class="feature">
-            <figcaption><h3>Collection de skins</h3><p>Vos skins sur le total, la complétion, la valeur boutique en RP et vos chromas. Filtrez par champion ou par gamme : la collection reste sur votre PC.</p></figcaption>
+            <figcaption>
+              <span class="eyebrow is-cyan">100 % local sur votre PC</span>
+              <h3>Collection de skins</h3>
+              <p>Vos skins sur le total, la complétion, la valeur boutique en RP et vos chromas. Filtrez par champion ou par gamme : la collection reste sur votre PC.</p>
+            </figcaption>
             <a class="zoom" href="assets/captures/collection.webp"><img src="assets/captures/collection-1x.webp" srcset="assets/captures/collection-1x.webp 1240w, assets/captures/collection.webp 2480w" sizes="(max-width: 1040px) 100vw, 780px" width="2480" height="1550" loading="lazy" alt="Page Collection de RIFU : skins possédés sur le total, valeur boutique en RP, chromas, filtres et skins par champion."></a>
           </figure>
         </div>
+
+        <div class="index-toolbar">
+          <span class="eyebrow">11 outils intégrés</span>
+          <div class="index-filters" role="group" aria-label="Filtrer les fonctions">
+            <button class="index-filter" id="filter-all" type="button" data-filter-btn="all" aria-pressed="true">Tout voir (11)</button>
+            <button class="index-filter" id="filter-draft" type="button" data-filter-btn="draft" aria-pressed="false">Draft & Avant-partie</button>
+            <button class="index-filter" id="filter-game" type="button" data-filter-btn="game" aria-pressed="false">En jeu & Overlays</button>
+            <button class="index-filter" id="filter-progress" type="button" data-filter-btn="progress" aria-pressed="false">Suivi & Référence</button>
+          </div>
+        </div>
+
         <dl class="index">
-          <div><dt>Suivi des LP</dt><dd>LP du jour sur l'accueil, courbe sur 30 jours dans Progression, même pour les parties jouées RIFU fermé.</dd></div>
-          <div><dt>Profils joueurs</dt><dd>Rangs, tags et champions de n'importe quel joueur EUW, et chaque partie de son historique notée sur 100.</dd></div>
-          <div><dt>Ce patch pour vous</dt><dd>Une puce Buff, Nerf ou Ajusté à côté de vos champions et de vos objets, à chaque patch.</dd></div>
-          <div><dt>Fiches champions</dt><dd>Build, runes, compétences et matchups de chaque champion, hors partie, avec votre bilan sur lui.</dd></div>
-          <div><dt>Runes et objets en un clic</dt><dd>Page de runes, sorts sur la bonne touche et set d'objets dans la boutique, ensemble ou séparément. Vos propres sets sont conservés.</dd></div>
-          <div><dt>Simulateur de draft</dt><dd>Testez une compo hors partie et voyez ce que votre pool ne couvre pas.</dd></div>
-          <div><dt>Mémo de matchup</dt><dd>Un mémo contre chaque adversaire, rappelé à la draft et au chargement suivants. Il reste sur votre PC.</dd></div>
-          <div><dt>Overlays à votre goût</dt><dd>Opacité de 30 à 100 %, réglable à part pour le HUD, et taille de 80 à 130 %. Le texte reste lisible même très transparent.</dd></div>
-          <div><dt>Toujours au patch</dt><dd>Objets, runes et compétences se mettent à jour seuls à chaque patch, sans nouvelle version.</dd></div>
-          <div><dt>Partie trouvée</dt><dd>Alerte sonore, et acceptation automatique si vous l'activez.</dd></div>
-          <div><dt>Défi du jour</dt><dd>Trois questions de culture LoL sur l'accueil, les mêmes pour tout le monde.</dd></div>
+          <div data-cat="progress"><dt><svg class="ico"><use href="#i-chart"/></svg>Suivi des LP</dt><dd>LP du jour sur l'accueil, courbe sur 30 jours dans Progression, même pour les parties jouées RIFU fermé.</dd></div>
+          <div data-cat="progress"><dt><svg class="ico"><use href="#i-eye"/></svg>Profils joueurs</dt><dd>Rangs, tags et champions de n'importe quel joueur EUW, et chaque partie de son historique notée sur 100.</dd></div>
+          <div data-cat="progress"><dt><svg class="ico"><use href="#i-spark"/></svg>Ce patch pour vous</dt><dd>Une puce Buff, Nerf ou Ajusté à côté de vos champions et de vos objets, à chaque patch.</dd></div>
+          <div data-cat="progress"><dt><svg class="ico"><use href="#i-book"/></svg>Fiches champions</dt><dd>Build, runes, compétences et matchups de chaque champion, hors partie, avec votre bilan sur lui.</dd></div>
+          <div data-cat="draft"><dt><svg class="ico"><use href="#i-runes"/></svg>Runes et objets en un clic</dt><dd>Page de runes, sorts sur la bonne touche et set d'objets dans la boutique, ensemble ou séparément. Vos propres sets sont conservés.</dd></div>
+          <div data-cat="draft"><dt><svg class="ico"><use href="#i-grid"/></svg>Simulateur de draft</dt><dd>Testez une compo hors partie et voyez ce que votre pool ne couvre pas.</dd></div>
+          <div data-cat="draft"><dt><svg class="ico"><use href="#i-pen"/></svg>Mémo de matchup</dt><dd>Un mémo contre chaque adversaire, rappelé à la draft et au chargement suivants. Il reste sur votre PC.</dd></div>
+          <div data-cat="game"><dt><svg class="ico"><use href="#i-sliders"/></svg>Overlays à votre goût</dt><dd>Opacité de 30 à 100 %, réglable à part pour le HUD, et taille de 80 à 130 %. Le texte reste lisible même très transparent.</dd></div>
+          <div data-cat="game"><dt><svg class="ico"><use href="#i-refresh"/></svg>Toujours au patch</dt><dd>Objets, runes et compétences se mettent à jour seuls à chaque patch, sans nouvelle version.</dd></div>
+          <div data-cat="draft"><dt><svg class="ico"><use href="#i-bell"/></svg>Partie trouvée</dt><dd>Alerte sonore, et acceptation automatique si vous l'activez.</dd></div>
+          <div data-cat="progress"><dt><svg class="ico"><use href="#i-quiz"/></svg>Défi du jour</dt><dd>Trois questions de culture LoL sur l'accueil, les mêmes pour tout le monde.</dd></div>
         </dl>
       </div>
     </section>
@@ -443,6 +647,7 @@
     <section id="principes">
       <div class="wrap">
         <div class="section-head">
+          <span class="eyebrow">Éthique & Sécurité du compte</span>
           <h2>Vous aider à jouer, <span class="accent">jamais jouer à votre place</span></h2>
         </div>
         <ol class="manifest">
@@ -458,6 +663,7 @@
       <section id="comparatif">
         <div class="wrap">
           <div class="section-head">
+            <span class="eyebrow">Comparatif transparent</span>
             <h2>Ce que les autres font payer, <span class="accent">RIFU l'offre</span></h2>
             <p>Le meilleur de Porofessor et de DPM, réuni dans une seule app gratuite.</p>
           </div>
@@ -467,7 +673,7 @@
               <thead>
                 <tr>
                   <th scope="col">Fonction</th>
-                  <th scope="col" class="us">RIFU<small>App Windows</small></th>
+                  <th scope="col" class="us">RIFU<small>App Windows autonome</small></th>
                   <th scope="col">Porofessor<small>App Windows</small></th>
                   <th scope="col">DPM<small>App Windows</small></th>
                 </tr>
@@ -492,6 +698,7 @@
         <div class="wrap install">
           <div>
             <div class="section-head">
+              <span class="eyebrow">Mise en route rapide</span>
               <h2>Prêt en deux minutes</h2>
             </div>
             <ol class="steps">
@@ -520,7 +727,7 @@
                 <li><kbd>TAB</kbd> maintenu : écarts d'équipement</li>
                 <li>Clic maintenu sur le HUD : le déplacer</li>
                 <li><kbd>Espace</kbd> au chargement : voir l'écran de League</li>
-                <li><kbd>Ctrl</kbd> + <kbd>K</kbd> : aller à un écran</li>
+                <li><kbd>Ctrl</kbd> + <kbd>K</kbd> : aller à un écran (essayez-le sur ce site !)</li>
               </ul>
             </div>
           </div>
@@ -530,49 +737,50 @@
       <section id="faq">
         <div class="wrap">
           <div class="section-head">
+            <span class="eyebrow">Tout savoir avant d'installer</span>
             <h2>Questions fréquentes</h2>
           </div>
           <div class="faq">
-          <details>
-            <summary>RIFU est-il gratuit ?</summary>
-            <p>Oui, entièrement. À terme, RIFU sera financé par une publicité discrète, uniquement dans la fenêtre RIFU et hors partie : jamais en sélection, au chargement, en jeu ni dans un overlay.</p>
-          </details>
-          <details>
-            <summary>RIFU remplace-t-il Porofessor ou DPM ?</summary>
-            <p>C'est son ambition. RIFU réunit dans une seule app le scouting de l'écran de chargement, l'assistant de draft, les overlays en jeu, le bilan de partie et le suivi des LP, sans abonnement. Son point fort : il explique ce qui manque à votre compo et propose des champions de votre propre pool.</p>
-          </details>
-          <details>
-            <summary>Est-ce que je risque quelque chose avec mon compte ?</summary>
-            <p>RIFU n'utilise que les interfaces que Riot met à disposition des applications tierces : l'API Riot, l'API du client League et les données de la partie en cours. Il ne lit jamais la mémoire du jeu, ne touche aux fichiers de League que pour activer les replays si vous le demandez, et ne joue jamais à votre place.</p><p>Il suit les règles de Riot pour les applications tierces : plusieurs options plutôt qu'un choix imposé, pas d'estimation de MMR, pas d'identification des joueurs masqués en sélection, pas de suivi des sorts ni des ultimes adverses.</p>
-          </details>
-          <details>
-            <summary>Comment obtenir un code bêta ?</summary>
-            <p>La bêta est fermée et se fait sur invitation, avec un code personnel par joueur. <a data-discord href="#">Rejoignez le Discord RIFU</a> pour demander une place.</p>
-          </details>
-          <details>
-            <summary>Comment est calculée la note sur 100 ?</summary>
-            <p>Chaque mesure de la partie (éliminations, participation, dégâts, or, sbires, vision, objectifs) est rapportée au meilleur des dix joueurs, puis pondérée selon votre rôle. Le meilleur de l'équipe gagnante est MVP ; le bilan nomme aussi le meilleur de l'autre équipe. Ce n'est ni un rang ni une estimation de MMR.</p>
-          </details>
-          <details>
-            <summary>Les overlays gênent-ils le jeu ?</summary>
-            <p>Non. Ils ne prennent jamais le focus du jeu, le HUD laisse passer vos clics, et vous réglez leur opacité (de 30 à 100 %) et leur taille. Pendant la bêta, ils demandent le mode fenêtré sans bordure ; le plein écran viendra avec la version signée.</p>
-          </details>
-          <details>
-            <summary>Faut-il installer Overwolf ?</summary>
-            <p>Non. RIFU est une application autonome : elle n'a pas besoin du client Overwolf.</p>
-          </details>
-          <details>
-            <summary>Pourquoi Windows affiche-t-il un avertissement ?</summary>
-            <p>Pendant la bêta, l'installeur n'est pas encore signé par un certificat, donc Windows SmartScreen le signale. La signature est prévue pour la sortie publique. En attendant, téléchargez RIFU uniquement depuis ce site ou la <a href="https://github.com/Rifutajine/rifu-releases/releases">page officielle des versions</a>.</p>
-          </details>
-          <details>
-            <summary>Quels modes, quels serveurs, quels systèmes ?</summary>
-            <p>La Faille de l'invocateur (normales, classées, Coop contre IA, parties personnalisées), la Partie rapide, l'ARAM et l'ARAM Mayhem. En Arena, RIFU ne donne pas de conseil de draft, et les parties Brawl ne sont pas suivies. Serveur EUW, sur Windows 10 et 11.</p>
-          </details>
-          <details>
-            <summary>Quelles données sont envoyées ?</summary>
-            <p>Le minimum pour afficher les profils et l'écran de chargement. Tout le reste reste sur votre PC, et les retours ne partent que si vous l'activez. Le détail est dans la <a href="confidentialite.html">politique de confidentialité</a>.</p>
-          </details>
+            <details>
+              <summary>RIFU est-il gratuit ?</summary>
+              <p>Oui, entièrement. À terme, RIFU sera financé par une publicité discrète, uniquement dans la fenêtre RIFU et hors partie : jamais en sélection, au chargement, en jeu ni dans un overlay.</p>
+            </details>
+            <details>
+              <summary>RIFU remplace-t-il Porofessor ou DPM ?</summary>
+              <p>C'est son ambition. RIFU réunit dans une seule app le scouting de l'écran de chargement, l'assistant de draft, les overlays en jeu, le bilan de partie et le suivi des LP, sans abonnement. Son point fort : il explique ce qui manque à votre compo et propose des champions de votre propre pool.</p>
+            </details>
+            <details>
+              <summary>Est-ce que je risque quelque chose avec mon compte ?</summary>
+              <p>RIFU n'utilise que les interfaces que Riot met à disposition des applications tierces : l'API Riot, l'API du client League et les données de la partie en cours. Il ne lit jamais la mémoire du jeu, ne touche aux fichiers de League que pour activer les replays si vous le demandez, et ne joue jamais à votre place.</p><p>Il suit les règles de Riot pour les applications tierces : plusieurs options plutôt qu'un choix imposé, pas d'estimation de MMR, pas d'identification des joueurs masqués en sélection, pas de suivi des sorts ni des ultimes adverses.</p>
+            </details>
+            <details>
+              <summary>Comment obtenir un code bêta ?</summary>
+              <p>La bêta est fermée et se fait sur invitation, avec un code personnel par joueur. <a data-discord href="#">Rejoignez le Discord RIFU</a> pour demander une place.</p>
+            </details>
+            <details>
+              <summary>Comment est calculée la note sur 100 ?</summary>
+              <p>Chaque mesure de la partie (éliminations, participation, dégâts, or, sbires, vision, objectifs) est rapportée au meilleur des dix joueurs, puis pondérée selon votre rôle. Le meilleur de l'équipe gagnante est MVP ; le bilan nomme aussi le meilleur de l'autre équipe. Ce n'est ni un rang ni une estimation de MMR.</p>
+            </details>
+            <details>
+              <summary>Les overlays gênent-ils le jeu ?</summary>
+              <p>Non. Ils ne prennent jamais le focus du jeu, le HUD laisse passer vos clics, et vous réglez leur opacité (de 30 à 100 %) et leur taille. Pendant la bêta, ils demandent le mode fenêtré sans bordure ; le plein écran viendra avec la version signée.</p>
+            </details>
+            <details>
+              <summary>Faut-il installer Overwolf ?</summary>
+              <p>Non. RIFU est une application autonome : elle n'a pas besoin du client Overwolf.</p>
+            </details>
+            <details>
+              <summary>Pourquoi Windows affiche-t-il un avertissement ?</summary>
+              <p>Pendant la bêta, l'installeur n'est pas encore signé par un certificat, donc Windows SmartScreen le signale. La signature est prévue pour la sortie publique. En attendant, téléchargez RIFU uniquement depuis ce site ou la <a href="https://github.com/Rifutajine/rifu-releases/releases">page officielle des versions</a>.</p>
+            </details>
+            <details>
+              <summary>Quels modes, quels serveurs, quels systèmes ?</summary>
+              <p>La Faille de l'invocateur (normales, classées, Coop contre IA, parties personnalisées), la Partie rapide, l'ARAM et l'ARAM Mayhem. En Arena, RIFU ne donne pas de conseil de draft, et les parties Brawl ne sont pas suivies. Serveur EUW, sur Windows 10 et 11.</p>
+            </details>
+            <details>
+              <summary>Quelles données sont envoyées ?</summary>
+              <p>Le minimum pour afficher les profils et l'écran de chargement. Tout le reste reste sur votre PC, et les retours ne partent que si vous l'activez. Le détail est dans la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -604,13 +812,23 @@
         <h2>Votre prochaine game <span class="accent">commence ici</span></h2>
         <p>Gratuit, pour Windows. Rejoignez le Discord pour recevoir votre code bêta.</p>
         <div class="cta">
-          <a class="btn btn-primary btn-lg" href="telecharger.html?dl=1"><svg class="ico"><use href="#i-download"/></svg>Télécharger RIFU</a>
-          <a class="btn btn-ghost btn-lg" data-discord href="#">Demander un code bêta</a>
+          <a class="btn btn-primary btn-lg" id="final-download-btn" href="telecharger.html?dl=1"><svg class="ico"><use href="#i-download"/></svg>Télécharger RIFU</a>
+          <a class="btn btn-ghost btn-lg" id="final-discord-btn" data-discord href="#">Demander un code bêta</a>
         </div>
         <p class="dl-meta" data-download-meta></p>
       </div>
     </section>
   </main>
+
+  <div class="floating-dock" data-floating-dock aria-label="Accès rapide au téléchargement">
+    <div class="dock-meta">
+      <img src="assets/logo.svg" alt="" width="20" height="20">
+      <span>RIFU</span>
+      <small>Windows · Gratuit</small>
+    </div>
+    <a class="btn btn-ghost btn-sm" data-discord href="#">Code bêta Discord</a>
+    <a class="btn btn-primary btn-sm" href="telecharger.html?dl=1"><svg class="ico"><use href="#i-download"/></svg>Télécharger</a>
+  </div>
 
   <footer>
     <div class="wrap">
