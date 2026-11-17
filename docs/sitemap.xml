@@ -5,15 +5,15 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://rifutajine.github.io/rifu-releases/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rifutajine.github.io/rifu-releases/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rifutajine.github.io/rifu-releases/"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/accueil.webp</image:loc></image:image>
     <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/selection.webp</image:loc></image:image>
     <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/chargement.webp</image:loc></image:image>
     <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/panneau.webp</image:loc></image:image>
     <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/bilan.webp</image:loc></image:image>
     <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/tier-list.webp</image:loc></image:image>
+    <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/progression.webp</image:loc></image:image>
     <image:image><image:loc>https://rifutajine.github.io/rifu-releases/assets/captures/collection.webp</image:loc></image:image>
   </url>
   <url>
@@ -21,9 +21,27 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://rifutajine.github.io/rifu-releases/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rifutajine.github.io/rifu-releases/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rifutajine.github.io/rifu-releases/"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rifutajine.github.io/rifu-releases/telecharger.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rifutajine.github.io/rifu-releases/telecharger.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rifutajine.github.io/rifu-releases/en/download.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rifutajine.github.io/rifu-releases/telecharger.html"/>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rifutajine.github.io/rifu-releases/en/download.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rifutajine.github.io/rifu-releases/telecharger.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rifutajine.github.io/rifu-releases/en/download.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rifutajine.github.io/rifu-releases/telecharger.html"/>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rifutajine.github.io/rifu-releases/confidentialite.html</loc>
