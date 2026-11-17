@@ -1,6 +1,6 @@
 /*
  * Site RIFU : réglages en tête de fichier, lien de téléchargement de la dernière version,
- * puis les animations de la page d'accueil (apparitions, démo de draft jouable).
+ * puis les animations de la page d'accueil (frise des quatre moments, démo de draft jouable).
  * Les liens laissés vides ('') sont simplement masqués.
  */
 const RIFU_SITE = {
@@ -189,26 +189,19 @@ function wireHeader() {
   window.addEventListener('scroll', update, { passive: true });
 }
 
-/** Apparition des blocs au défilement, en léger décalé pour les voisins. */
-function wireReveal() {
-  const items = [...document.querySelectorAll('.reveal')];
-  if (!('IntersectionObserver' in window) || reducedMotion) {
-    items.forEach((el) => el.classList.add('is-visible'));
-    return;
-  }
-  items.forEach((el) => {
-    const siblings = [...el.parentElement.children].filter((c) => c.classList.contains('reveal'));
-    const i = siblings.indexOf(el);
-    if (i > 0) el.style.transitionDelay = `${Math.min(i, 6) * 70}ms`;
-  });
+/** Frise des quatre moments : l'étape affichée à l'écran est mise en avant. */
+function wireRail() {
+  const rail = document.querySelector('[data-rail]');
+  if (!rail || !('IntersectionObserver' in window)) return;
+  const links = [...rail.querySelectorAll('a')];
+  const sections = links.map((a) => document.querySelector(a.getAttribute('href')));
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue;
-      e.target.classList.add('is-visible');
-      io.unobserve(e.target);
+      links.forEach((a, i) => a.setAttribute('aria-current', String(sections[i] === e.target)));
     }
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-  items.forEach((el) => io.observe(el));
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach((s) => s && io.observe(s));
 }
 
 /*
@@ -246,7 +239,12 @@ function wireDemo() {
   const you = q('[data-you]');
   const youImg = you.querySelector('img');
   const youName = you.querySelector('b');
-  const seg = (name) => q(`[data-seg="${name}"]`);
+  // Le grand pentagone du héros porte les mêmes segments que celui de la console : ils s'allument ensemble.
+  const seg = (name) => {
+    const paths = [...document.querySelectorAll(`[data-seg="${name}"]`)];
+    return { classList: { add: (c) => paths.forEach((p) => p.classList.add(c)), remove: (c) => paths.forEach((p) => p.classList.remove(c)) } };
+  };
+  const setTimer = (n) => { timer.firstElementChild.textContent = String(n); timer.style.setProperty('--t', String(n / 30)); };
   let timeouts = [];
   let base = null;
 
@@ -285,13 +283,13 @@ function wireDemo() {
       s.classList.remove('is-picked');
       s.querySelector('[data-name]').textContent = '…';
     });
-    qa('[data-seg]').forEach((p) => p.classList.remove('on'));
+    document.querySelectorAll('[data-seg]').forEach((p) => p.classList.remove('on'));
     options.forEach((o) => { o.classList.remove('is-in'); o.disabled = true; });
     clearChoice();
     gaps.replaceChildren();
     verdict.textContent = '';
     setAxes({}, null, false);
-    timer.textContent = '30';
+    setTimer(30);
     phase.textContent = T.draftStart;
   }
 
@@ -299,7 +297,7 @@ function wireDemo() {
     base = { totals: { ...totals }, adSum };
     setAxes(totals, adSum / 4, true);
     setGaps(false, false);
-    timer.textContent = '22';
+    setTimer(22);
     phase.textContent = T.yourTurn;
     verdict.textContent = T.pickOne;
     options.forEach((o) => { o.disabled = false; });
@@ -340,7 +338,7 @@ function wireDemo() {
           seg(String(p.i)).classList.add('on');
         }
         setAxes(totals, allies ? adSum / allies : null, false);
-        timer.textContent = String(30 - Math.round((n + 1) * 0.9));
+        setTimer(30 - Math.round((n + 1) * 0.9));
         phase.textContent = p.side === 'ally' ? T.allyPicks : T.enemyPicks;
       };
       if (step) later(300 + n * step, run); else run();
@@ -405,6 +403,6 @@ function wireLightbox() {
 wireContacts();
 wireLightbox();
 wireHeader();
-wireReveal();
+wireRail();
 wireDemo();
 void wireDownloads();
